@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -30,6 +32,13 @@ jobs:
         with:
           name: wikidata-import
           path: data/import
+      # プルリクエスト上では、取り込み結果をそのブランチにコミットする
+      - if: github.event_name == 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/import
+          git diff --cached --quiet || (git commit -m "Wikidataから周年データを取り込み" && git push)
       # 定期実行・手動実行のときだけ、結果をプルリクエストにする
       # （リポジトリ設定 Actions → General で「Allow GitHub Actions to create and approve pull requests」をオンにする必要あり）
       - if: github.event_name != 'pull_request'
