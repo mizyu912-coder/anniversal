@@ -18,6 +18,7 @@ export const BASE_KINDS = {
   premiere: "劇場公開",
   launch: "発売開始",
   debut: "デビュー",
+  formation: "結成",
   origin: "創業",
   founding: "設立",
   listing: "上場",
@@ -49,6 +50,7 @@ export interface Entity {
   genre: string;
   parentId: string | null;
   officialUrl: string;
+  wikidata: string;
   bases: Base[];
 }
 

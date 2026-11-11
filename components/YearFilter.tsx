@@ -1,13 +1,36 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { isMilestone, sortByDate } from "@/lib/anniv";
 import AnnivList from "./AnnivList";
 import { ENTITY_TYPES } from "@/lib/types";
-import type { Anniversary, EntityType } from "@/lib/types";
+import type { Anniversary, EntityType, SearchItem } from "@/lib/types";
 
-export default function YearFilter({ items, year }: { items: Anniversary[]; year: number }) {
+/** 節目以外も含む全件を検索インデックスから計算する */
+function allFromIndex(index: SearchItem[], year: number): Anniversary[] {
+  const out: Anniversary[] = [];
+  for (const i of index)
+    for (const b of i.bases) {
+      if (b.k === "birthday" || b.y === null || year - b.y < 1) continue;
+      const n = year - b.y;
+      out.push({ entityId: i.id, name: i.name, type: i.t, kind: b.k, baseYear: b.y, month: b.m, day: b.d, n, milestone: isMilestone(n) });
+    }
+  return sortByDate(out);
+}
+
+/** items は節目の周年のみ（ページを軽くするため）。チェックを外すと全件を読み込む */
+export default function YearFilter({ items: milestoneItems, year }: { items: Anniversary[]; year: number }) {
   const [type, setType] = useState<EntityType | "">("");
   const [milestoneOnly, setMilestoneOnly] = useState(true);
   const [month, setMonth] = useState(0);
+  const [allItems, setAllItems] = useState<Anniversary[] | null>(null);
+  useEffect(() => {
+    if (milestoneOnly || allItems) return;
+    fetch("/search-index.json")
+      .then((r) => r.json())
+      .then((index: SearchItem[]) => setAllItems(allFromIndex(index, year)))
+      .catch(() => setAllItems([]));
+  }, [milestoneOnly, allItems, year]);
+  const items = milestoneOnly ? milestoneItems : (allItems ?? milestoneItems);
   const filtered = useMemo(
     () =>
       items.filter(
