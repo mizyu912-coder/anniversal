@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about/" },
 };
 
-const FORM_URL = process.env.NEXT_PUBLIC_REPORT_FORM_URL ?? "";
+const FORM_URL = process.env.NEXT_PUBLIC_REPORT_FORM_URL || "";
 
 export default function About() {
   return (

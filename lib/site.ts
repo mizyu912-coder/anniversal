@@ -1,7 +1,7 @@
 export const SITE_NAME = "アニバーサル";
 export const SITE_DESCRIPTION =
   "漫画・アニメ・ゲーム・映画・商品ブランド・ミュージシャン・上場企業が何年に何周年を迎えるかを検索できる周年データベース。";
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com").replace(/\/$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://example.com").replace(/\/$/, "");
 
 /** ビルド時点の年。年別ページの生成範囲の基準 */
 export const BUILD_YEAR = new Date().getFullYear();
@@ -15,5 +15,5 @@ export function yearRange(): number[] {
   return ys;
 }
 
-export const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG ?? "";
-export const RAKUTEN_AFF_ID = process.env.NEXT_PUBLIC_RAKUTEN_AFF_ID ?? "";
+export const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "";
+export const RAKUTEN_AFF_ID = process.env.NEXT_PUBLIC_RAKUTEN_AFF_ID || "";
