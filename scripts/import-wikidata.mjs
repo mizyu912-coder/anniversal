@@ -20,13 +20,13 @@ const TARGETS = [
   { type: "game", kind: "release", genre: "ゲームソフト", minLinks: 8, dateProps: ["P577"],
     where: "?item wdt:P31 wd:Q7889; wdt:P495 wd:Q17." },
   { type: "movie", kind: "premiere", genre: "映画", minLinks: 8, dateProps: ["P577"],
-    where: "VALUES ?cls { wd:Q11424 wd:Q20650540 wd:Q202866 } ?item wdt:P31 ?cls; wdt:P495 wd:Q17." },
+    where: "VALUES ?cls { wd:Q11424 wd:Q20650540 wd:Q202866 } ?item wdt:P31 ?cls; wdt:P495 wd:Q17; wdt:P364 wd:Q5287." },
   { type: "musician", kind: "formation", genre: "グループ", minLinks: 8, dateProps: ["P571", "P2031"],
     where: "VALUES ?cls { wd:Q215380 wd:Q5741069 wd:Q2088357 wd:Q9212979 } ?item wdt:P31 ?cls; wdt:P495 wd:Q17." },
   { type: "musician", kind: "debut", genre: "ソロ", minLinks: 12, dateProps: ["P2031"],
-    where: "?item wdt:P31 wd:Q5; wdt:P27 wd:Q17; wdt:P106 wd:Q177220." },
+    where: "?item wdt:P31 wd:Q5; wdt:P27 wd:Q17; wdt:P1412 wd:Q5287; wdt:P106 wd:Q177220." },
   { type: "company", kind: "founding", genre: "", minLinks: 2, dateProps: ["P571"],
-    where: "?item wdt:P414 wd:Q217475." },
+    where: "?item wdt:P414 wd:Q217475; wdt:P17 wd:Q17." },
 ];
 
 function query(t, prop) {
