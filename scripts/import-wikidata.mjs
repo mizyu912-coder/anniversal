@@ -20,7 +20,7 @@ const TARGETS = [
   { type: "game", kind: "release", genre: "ゲームソフト", minLinks: 8, dateProps: ["P577"],
     where: "?item wdt:P31 wd:Q7889; wdt:P495 wd:Q17." },
   { type: "movie", kind: "premiere", genre: "映画", minLinks: 8, dateProps: ["P577"],
-    where: "VALUES ?cls { wd:Q11424 wd:Q20650540 wd:Q202866 } ?item wdt:P31 ?cls; wdt:P495 wd:Q17; wdt:P364 wd:Q5287." },
+    where: "VALUES ?cls { wd:Q11424 wd:Q20650540 wd:Q202866 } ?item wdt:P31 ?cls; wdt:P495 wd:Q17; wdt:P364 wd:Q5287. FILTER NOT EXISTS { ?item wdt:P495 wd:Q30 }" },
   { type: "musician", kind: "formation", genre: "グループ", minLinks: 8, dateProps: ["P571", "P2031"],
     where: "VALUES ?cls { wd:Q215380 wd:Q5741069 wd:Q2088357 wd:Q9212979 } ?item wdt:P31 ?cls; wdt:P495 wd:Q17." },
   { type: "musician", kind: "debut", genre: "ソロ", minLinks: 12, dateProps: ["P2031"],
@@ -74,7 +74,7 @@ const manualKeys = new Set(manual.map((r) => `${r.type}:${normalize(r.name)}`));
 const manualQids = new Set(manual.map((r) => r.wikidata).filter(Boolean));
 const excluded = new Set(
   fs.existsSync("data/import/excluded.txt")
-    ? fs.readFileSync("data/import/excluded.txt", "utf8").split(/\s+/).filter((s) => /^Q\d+$/.test(s))
+    ? fs.readFileSync("data/import/excluded.txt", "utf8").split("\n").map((l) => l.trim().split(/\s/)[0]).filter((s) => /^Q\d+$/.test(s))
     : [],
 );
 

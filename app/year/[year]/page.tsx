@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function YearPage({ params }: Props) {
   const year = Number((await params).year);
-  const items = anniversariesInYear(getEntities(), year);
+  const items = anniversariesInYear(getEntities(), year).filter((a) => a.milestone);
   return (
     <>
       <p className="breadcrumb">
