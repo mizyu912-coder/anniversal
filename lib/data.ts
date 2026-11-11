@@ -7,8 +7,14 @@ import { normalize } from "./normalize";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 
+/** 手作業データ + 自動取り込みデータ（data/import/）。手作業データが先に読まれ優先される */
+const ENTITY_FILES = ["entities.csv", "import/wikidata-entities.csv"];
+const BASE_FILES = ["bases.csv", "import/wikidata-bases.csv"];
+
 function readCsv(file: string): Record<string, string>[] {
-  const text = fs.readFileSync(path.join(DATA_DIR, file), "utf8");
+  const full = path.join(DATA_DIR, file);
+  if (!fs.existsSync(full)) return [];
+  const text = fs.readFileSync(full, "utf8");
   const res = Papa.parse<Record<string, string>>(text, { header: true, skipEmptyLines: true });
   if (res.errors.length) throw new Error(`${file}: ${res.errors.map((e) => `${e.row}: ${e.message}`).join(", ")}`);
   return res.data;
@@ -30,7 +36,7 @@ let cache: Entity[] | null = null;
 export function getEntities(): Entity[] {
   if (cache) return cache;
   const entities = new Map<string, Entity>();
-  for (const r of readCsv("entities.csv")) {
+  for (const r of ENTITY_FILES.flatMap(readCsv)) {
     if (!(r.type in ENTITY_TYPES)) throw new Error(`不明なtype: ${r.type} (${r.id})`);
     if (entities.has(r.id)) throw new Error(`idが重複: ${r.id}`);
     entities.set(r.id, {
@@ -42,10 +48,11 @@ export function getEntities(): Entity[] {
       genre: r.genre ?? "",
       parentId: r.parent_id || null,
       officialUrl: r.official_url ?? "",
+      wikidata: r.wikidata ?? "",
       bases: [],
     });
   }
-  for (const r of readCsv("bases.csv")) {
+  for (const r of BASE_FILES.flatMap(readCsv)) {
     const e = entities.get(r.entity_id);
     if (!e) throw new Error(`bases.csv: 未登録のentity_id ${r.entity_id}`);
     if (!(r.kind in BASE_KINDS)) throw new Error(`不明なkind: ${r.kind} (${r.entity_id})`);
