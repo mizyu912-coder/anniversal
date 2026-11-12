@@ -9,6 +9,11 @@ on:
     - cron: "0 18 1 * *"
   workflow_dispatch:
 
+# デプロイが同時に2つ走らないようにする
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -47,11 +52,15 @@ jobs:
         with:
           name: site
           path: out
-      - uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - uses: actions/checkout@v4
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          local-dir: ./out/
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          sparse-checkout: scripts/deploy
+          path: repo
+      # サイト全体をzip 1個で送り、サーバー上で展開する（1ファイルずつ送ると数時間かかるため）
+      - run: bash repo/scripts/deploy/deploy.sh
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+          SITE_URL: ${{ vars.SITE_URL }}
