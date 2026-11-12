@@ -19,11 +19,17 @@ export function anniversaryOf(entity: Entity, base: Base, year: number): Anniver
     day: base.day,
     n,
     milestone: isMilestone(n),
+    pop: entity.pop,
   };
 }
 
 export function sortByDate<T extends { month: number | null; day: number | null }>(list: T[]): T[] {
   return [...list].sort((a, b) => (a.month ?? 13) - (b.month ?? 13) || (a.day ?? 32) - (b.day ?? 32));
+}
+
+/** 知名度順（同じなら周年の大きい順） */
+export function sortByPop<T extends { pop: number; n: number }>(list: T[]): T[] {
+  return [...list].sort((a, b) => b.pop - a.pop || b.n - a.n);
 }
 
 export function anniversariesInYear(entities: Entity[], year: number): Anniversary[] {

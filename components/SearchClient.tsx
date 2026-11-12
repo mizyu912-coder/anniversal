@@ -21,7 +21,11 @@ export default function SearchClient() {
   const results = useMemo(() => {
     const nq = normalize(q);
     if (!index || !nq) return [];
-    return index.filter((i) => i.keys.includes(nq)).slice(0, 50);
+    // 前方一致を優先し、その中では知名度順
+    return index
+      .filter((i) => i.keys.includes(nq))
+      .sort((a, b) => Number(b.keys.startsWith(nq)) - Number(a.keys.startsWith(nq)) || b.p - a.p)
+      .slice(0, 50);
   }, [index, q]);
 
   const today = new Date();

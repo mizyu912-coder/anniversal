@@ -11,6 +11,7 @@ interface Hit {
   t: SearchItem["t"];
   label: string;
   milestone: boolean;
+  p: number;
 }
 
 /** 今日が記念日・誕生日のもの（閲覧日基準） */
@@ -28,12 +29,12 @@ export default function TodayList() {
         for (const i of index)
           for (const b of i.bases) {
             if (b.m !== m || b.d !== d) continue;
-            if (b.k === "birthday") out.push({ id: i.id, name: i.name, t: i.t, label: "誕生日", milestone: false });
+            if (b.k === "birthday") out.push({ id: i.id, name: i.name, t: i.t, label: "誕生日", milestone: false, p: i.p });
             else if (b.y !== null && y - b.y >= 1)
-              out.push({ id: i.id, name: i.name, t: i.t, label: `${BASE_KINDS[b.k]}${y - b.y}周年`, milestone: isMilestone(y - b.y) });
+              out.push({ id: i.id, name: i.name, t: i.t, label: `${BASE_KINDS[b.k]}${y - b.y}周年`, milestone: isMilestone(y - b.y), p: i.p });
           }
-        out.sort((a, b) => Number(b.milestone) - Number(a.milestone));
-        setHits(out);
+        out.sort((a, b) => Number(b.milestone) - Number(a.milestone) || b.p - a.p);
+        setHits(out.slice(0, 24));
       })
       .catch(() => setHits([]));
   }, []);

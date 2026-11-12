@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AffiliateLinks from "@/components/AffiliateLinks";
 import Countdown from "@/components/Countdown";
-import { getChildren, getEntities, getEntity } from "@/lib/data";
+import { getChildren, getEntities, getEntity, getSameYear } from "@/lib/data";
 import { formatDate, isMilestone } from "@/lib/anniv";
 import { BASE_KINDS, ENTITY_TYPES } from "@/lib/types";
 import type { Entity } from "@/lib/types";
@@ -59,6 +59,7 @@ export default async function EntityPage({ params }: Props) {
   const e = getEntity((await params).id)!;
   const parent = e.parentId ? getEntity(e.parentId) : undefined;
   const children = getChildren(e.id);
+  const sameYear = getSameYear(e);
   const years = [];
   for (const b of e.bases) {
     if (b.year === null || b.kind === "birthday") continue;
@@ -164,6 +165,22 @@ export default async function EntityPage({ params }: Props) {
           <h2>関連する作品・キャラクター</h2>
           <ul className="grid">
             {children.map((c) => (
+              <li key={c.id}>
+                <Link href={`/e/${c.id}/`}>
+                  {c.name} <span className={`tag t-${c.type}`}>{ENTITY_TYPES[c.type]}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {sameYear && (
+        <section className="card">
+          <h2>{sameYear.year}年に生まれた作品・ブランド・企業</h2>
+          <p className="muted small">{e.name}と同じ年に誕生し、同じタイミングで周年を迎えます。</p>
+          <ul className="grid">
+            {sameYear.list.map((c) => (
               <li key={c.id}>
                 <Link href={`/e/${c.id}/`}>
                   {c.name} <span className={`tag t-${c.type}`}>{ENTITY_TYPES[c.type]}</span>

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import "./globals.css";
 import Logo from "@/components/Logo";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
@@ -11,7 +12,12 @@ export const metadata: Metadata = {
   openGraph: { siteName: SITE_NAME, locale: "ja_JP", type: "website", images: ["/og.jpg"] },
   twitter: { card: "summary_large_image", images: ["/og.jpg"] },
   icons: { icon: "/icon.svg" },
+  // Google Search Console の所有権確認（HTMLタグ方式の content 値）
+  ...(process.env.NEXT_PUBLIC_GSC_VERIFICATION ? { verification: { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION } } : {}),
 };
+
+/** Google アナリティクス 4 の測定ID（G-XXXXXXX）。未設定なら読み込まない */
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
 
 export const viewport: Viewport = { themeColor: "#0f1014" };
 
@@ -32,6 +38,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
         />
+        {GA_ID && (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+            <Script id="ga4" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}
+            </Script>
+          </>
+        )}
       </head>
       <body>
         <header className="site-header">
