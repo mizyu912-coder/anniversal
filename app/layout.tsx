@@ -8,8 +8,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: `${SITE_NAME}｜作品・ブランド・企業の周年データベース`, template: `%s｜${SITE_NAME}` },
   description: SITE_DESCRIPTION,
-  openGraph: { siteName: SITE_NAME, locale: "ja_JP", type: "website", images: ["/og.png"] },
-  twitter: { card: "summary_large_image", images: ["/og.png"] },
+  openGraph: { siteName: SITE_NAME, locale: "ja_JP", type: "website", images: ["/og.jpg"] },
+  twitter: { card: "summary_large_image", images: ["/og.jpg"] },
   icons: { icon: "/icon.svg" },
 };
 

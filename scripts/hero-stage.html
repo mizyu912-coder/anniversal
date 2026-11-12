@@ -1,0 +1,144 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:#000}</style>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script></head><body>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+const q = new URLSearchParams(location.search);
+const W = +q.get('w') || 2400, H = +q.get('h') || 1350, mobile = W < H;
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setSize(W, H); renderer.setPixelRatio(1);
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene(); scene.background = new THREE.Color('#120406');
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = 0.25;
+
+// 乱数（固定シード）
+let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+
+// 布のノイズ（法線マップ）
+function fabricNormal(rep) {
+  const s = 512, c = document.createElement('canvas'); c.width = c.height = s; const g = c.getContext('2d');
+  const img = g.createImageData(s, s);
+  for (let i = 0; i < s * s; i++) { const n = (rnd() - 0.5) * 50; img.data[i*4] = 128 + n; img.data[i*4+1] = 128 + (rnd()-0.5)*50; img.data[i*4+2] = 255; img.data[i*4+3] = 255; }
+  g.putImageData(img, 0, 0);
+  const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(rep, rep); return t;
+}
+const velvet = (color, rep = 6) => new THREE.MeshPhysicalMaterial({
+  color, roughness: 0.82, sheen: 1, sheenColor: new THREE.Color('#ff5a5f'), sheenRoughness: 0.35,
+  normalMap: fabricNormal(rep), normalScale: new THREE.Vector2(0.25, 0.25), side: THREE.DoubleSide,
+});
+const gold = new THREE.MeshStandardMaterial({ color: '#d9ab52', metalness: 1, roughness: 0.22 });
+
+// 奥の幕（閉じたカーテン）
+{
+  const geo = new THREE.PlaneGeometry(22, 11, 700, 40);
+  const p = geo.attributes.position;
+  for (let i = 0; i < p.count; i++) { const x = p.getX(i), y = p.getY(i);
+    p.setZ(i, 0.22 * Math.sin(x * 4.2) + 0.08 * Math.sin(x * 11.3 + 1.3) + 0.03 * Math.sin(x * 23 + y * 0.3)); }
+  geo.computeVertexNormals();
+  const m = new THREE.Mesh(geo, velvet('#8c0d18', 10)); m.position.set(0, 4.5, -3.2); m.receiveShadow = true; scene.add(m);
+}
+// 左右の引き幕（タッセルで留めた形）
+const OUT = mobile ? 3.3 : 8.4;
+function sideDrape(sign) {
+  const w = mobile ? 1.9 : 3.6, h = 11, geo = new THREE.PlaneGeometry(w, h, 260, 120), p = geo.attributes.position;
+  const tie = 3.3; // 留め位置の高さ（床から）
+  for (let i = 0; i < p.count; i++) {
+    const u = (p.getX(i) + w / 2) / w;             // 0=外側 1=内側
+    const y = p.getY(i) + h / 2;                   // 床からの高さ
+    const d = Math.abs(y - tie);
+    const pinch = y > tie ? 0.28 + 0.72 * Math.min(1, Math.pow(d / 7.5, 1.3)) : 0.28 + 0.5 * Math.min(1, d / 3.3);
+    const x = u * w * pinch;
+    const z = 0.32 * Math.sin(u * 26 * pinch + 0.6) * (0.6 + 0.4 * pinch) + 0.12 * Math.sin(u * 61 + y * 0.2) * pinch;
+    p.setXYZ(i, sign * (-OUT + x), y, z + (1 - pinch) * 0.6);
+  }
+  geo.computeVertexNormals();
+  const m = new THREE.Mesh(geo, velvet('#7e0a14', 8)); m.position.set(0, 0, 3.0); m.castShadow = true; m.receiveShadow = true;
+  if (sign > 0) m.scale.x = 1; scene.add(m);
+  // タッセル
+  const xt = sign * (-OUT + w * 0.28 * 0.55);
+  const rope = new THREE.Mesh(new THREE.TorusGeometry(0.42, 0.06, 16, 48), gold); rope.position.set(xt, tie, 3.6); rope.scale.set(1.3, 0.5, 1); scene.add(rope);
+  const tas = new THREE.Mesh(new THREE.ConeGeometry(0.16, 0.7, 24), gold); tas.position.set(xt + sign * 0.5, tie - 0.55, 3.7); scene.add(tas);
+}
+sideDrape(1); sideDrape(-1);
+// 上部の幕（スワッグ）
+{
+  for (let k = -5; k <= 5; k++) {
+    const geo = new THREE.TorusGeometry(1.15, 0.28, 24, 64, Math.PI); const m = new THREE.Mesh(geo, velvet('#9b0e1a', 3));
+    m.rotation.z = Math.PI; m.position.set(k * 2.05, 9.25, 1.6); m.scale.set(1, 0.55, 1); scene.add(m);
+  }
+  const top = new THREE.Mesh(new THREE.BoxGeometry(24, 1.2, 0.4), velvet('#7d0b15', 4)); top.position.set(0, 9.9, 1.5); scene.add(top);
+}
+// 舞台の床（艶あり）
+{
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(60, 60), new THREE.MeshStandardMaterial({ color: '#2a0c0f', roughness: 0.3, metalness: 0.1 }));
+  m.rotation.x = -Math.PI / 2; m.receiveShadow = true; scene.add(m);
+}
+// レッドカーペット
+{
+  const len = 22, geo = new THREE.BoxGeometry(2.8, 0.03, len);
+  const mat = velvet('#b0121e', 14); mat.side = THREE.FrontSide; mat.roughness = 0.95;
+  const m = new THREE.Mesh(geo, mat); m.position.set(0, 0.015, -3 + len / 2); m.receiveShadow = true; scene.add(m);
+  for (const s of [-1, 1]) { const e = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.035, len), gold); e.position.set(s * 1.38, 0.02, -3 + len / 2); scene.add(e); }
+}
+// ポールとロープ
+{
+  const zs = [-1.6, 1.4, 4.4, 7.4, 10.4];
+  for (const s of [-1, 1]) {
+    for (const z of zs) {
+      const x = s * 1.85;
+      const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.95, 24), gold); pole.position.set(x, 0.5, z); pole.castShadow = true; scene.add(pole);
+      const base = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.17, 0.05, 32), gold); base.position.set(x, 0.03, z); scene.add(base);
+      const ball = new THREE.Mesh(new THREE.SphereGeometry(0.075, 24, 16), gold); ball.position.set(x, 1.0, z); scene.add(ball);
+    }
+    for (let i = 0; i < zs.length - 1; i++) {
+      const a = new THREE.Vector3(s * 1.85, 0.93, zs[i]), b = new THREE.Vector3(s * 1.85, 0.93, zs[i + 1]);
+      const mid = a.clone().lerp(b, 0.5); mid.y -= 0.32;
+      const curve = new THREE.QuadraticBezierCurve3(a, mid, b);
+      const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, 40, 0.035, 12), velvet('#8a0b16', 2)); tube.castShadow = true; scene.add(tube);
+    }
+  }
+}
+// 照明
+scene.add(new THREE.HemisphereLight('#ffdcc8', '#2a0508', 0.35));
+function spot(pos, target, color, intensity, angle) {
+  const l = new THREE.SpotLight(color, intensity, 0, angle, 0.65, 1.2); l.position.copy(pos); l.target.position.copy(target);
+  l.castShadow = true; l.shadow.mapSize.set(2048, 2048); l.shadow.bias = -0.0004; scene.add(l, l.target); return l;
+}
+spot(new THREE.Vector3(0, 13, 7), new THREE.Vector3(0, 2.5, -3), '#ffe6c4', 260, 0.34);
+spot(new THREE.Vector3(-7, 12, 6), new THREE.Vector3(-2.5, 3, -3), '#ffd9a8', 140, 0.26);
+spot(new THREE.Vector3(7, 12, 6), new THREE.Vector3(2.5, 3, -3), '#ffd9a8', 140, 0.26);
+spot(new THREE.Vector3(-9, 9, 9), new THREE.Vector3(-8.5, 3, 1), '#ffc9a0', 120, 0.4);
+spot(new THREE.Vector3(9, 9, 9), new THREE.Vector3(8.5, 3, 1), '#ffc9a0', 120, 0.4);
+spot(new THREE.Vector3(0, 10, 14), new THREE.Vector3(0, 0, 4), '#fff0dc', 70, 0.4);
+// 光の粒（玉ボケ）
+{
+  const c = document.createElement('canvas'); c.width = c.height = 128; const g = c.getContext('2d');
+  const gr = g.createRadialGradient(64, 64, 0, 64, 64, 64); gr.addColorStop(0, 'rgba(255,230,170,1)'); gr.addColorStop(0.55, 'rgba(255,215,140,.55)'); gr.addColorStop(0.7, 'rgba(255,200,120,.25)'); gr.addColorStop(1, 'rgba(255,200,120,0)');
+  g.fillStyle = gr; g.fillRect(0, 0, 128, 128); const tex = new THREE.CanvasTexture(c);
+  for (let i = 0; i < 46; i++) {
+    const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, opacity: 0.08 + rnd() * 0.22, depthWrite: false, blending: THREE.AdditiveBlending }));
+    const z = 2 + rnd() * 6; s.position.set((rnd() - 0.5) * 16, 1 + rnd() * 8, z); const sc = 0.08 + rnd() * 0.3; s.scale.set(sc, sc, 1); scene.add(s);
+  }
+}
+// カメラ
+const cam = new THREE.PerspectiveCamera(mobile ? 50 : 40, W / H, 0.1, 100);
+if (mobile) { cam.position.set(0, 2.0, 11); cam.lookAt(0, 3.3, 0); } else { cam.position.set(0, 2.0, 14); cam.lookAt(0, 4.0, 0); }
+// ポストプロセス：ブルーム＋ビネット＋粒子感
+const comp = new EffectComposer(renderer); comp.addPass(new RenderPass(scene, cam));
+comp.addPass(new UnrealBloomPass(new THREE.Vector2(W, H), 0.35, 0.6, 0.85));
+comp.addPass(new ShaderPass({ uniforms: { tDiffuse: { value: null } }, vertexShader: 'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
+  fragmentShader: 'uniform sampler2D tDiffuse;varying vec2 vUv;float h(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}void main(){vec4 c=texture2D(tDiffuse,vUv);float d=distance(vUv,vec2(.5,.45));c.rgb*=smoothstep(.95,.25,d)*.55+.45;c.rgb+= (h(vUv*1000.)-.5)*.035;gl_FragColor=c;}' }));
+comp.addPass(new OutputPass());
+comp.render();
+window.done = true;
+</script></body></html>
