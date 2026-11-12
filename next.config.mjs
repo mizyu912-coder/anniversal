@@ -4,5 +4,8 @@ const nextConfig = {
   output: "export",
   trailingSlash: true,
   images: { unoptimized: true },
+  // ビルドIDを固定し、内容が変わっていないページは毎回同じHTMLになるようにする
+  // （FTPアップロードで変更のあったファイルだけを送るため）
+  generateBuildId: async () => "anniversal",
 };
 export default nextConfig;
