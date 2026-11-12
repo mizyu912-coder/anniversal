@@ -34,7 +34,7 @@ export default function Home() {
           <div className="hero-brand">
             <Logo size="lg" />
           </div>
-          <h1 className="hero-title">その周年を、ビジネスの好機に。</h1>
+          <h1 className="hero-title">すべての周年に、拍手を。</h1>
           <p className="hero-lead">
             <span className="lead-genres">漫画・アニメ・ゲーム・映画・ブランド・ミュージシャン・上場企業</span>
             <span>約{Math.floor(entities.length / 100) * 100}件の「周年」を、年からも作品からも。</span>
