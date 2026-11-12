@@ -30,7 +30,7 @@ jobs:
           NEXT_PUBLIC_REPORT_FORM_URL: ${{ vars.REPORT_FORM_URL }}
       # 画面遷移の先読み用ファイル（約8,500個）はアップロードしない。
       # なくても通常のページ遷移になるだけで表示に影響はない
-      - run: find out -name '*.txt' ! -path 'out/robots.txt' -delete
+      - run: find out -type f -name '*.txt' ! -path 'out/robots.txt' -delete
       - uses: actions/upload-artifact@v4
         with:
           name: site
