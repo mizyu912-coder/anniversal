@@ -1,4 +1,4 @@
-export const SITE_NAME = "アニバーサル";
+export const SITE_NAME = "ANNIVERSARY DATABASE";
 export const SITE_DESCRIPTION =
   "漫画・アニメ・ゲーム・映画・商品ブランド・ミュージシャン・上場企業が何年に何周年を迎えるかを検索できる周年データベース。";
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://example.com").replace(/\/$/, "");

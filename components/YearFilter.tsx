@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import { isMilestone, sortByDate } from "@/lib/anniv";
 import AnnivList from "./AnnivList";
 import { ENTITY_TYPES } from "@/lib/types";
+import { isMilestone, NTH_OPTIONS, sortByDate } from "@/lib/anniv";
 import type { Anniversary, EntityType, SearchItem } from "@/lib/types";
 
 /** 節目以外も含む全件を検索インデックスから計算する */
@@ -22,7 +22,16 @@ export default function YearFilter({ items: milestoneItems, year }: { items: Ann
   const [type, setType] = useState<EntityType | "">("");
   const [milestoneOnly, setMilestoneOnly] = useState(true);
   const [month, setMonth] = useState(0);
+  const [nth, setNth] = useState(0);
   const [allItems, setAllItems] = useState<Anniversary[] | null>(null);
+  // トップページから ?n=30&type=anime のように来たときの初期値
+  useEffect(() => {
+    const p = new URLSearchParams(location.search);
+    const n = Number(p.get("n"));
+    if (n > 0) setNth(n);
+    const t = p.get("type");
+    if (t && t in ENTITY_TYPES) setType(t as EntityType);
+  }, []);
   useEffect(() => {
     if (milestoneOnly || allItems) return;
     fetch("/search-index.json")
@@ -34,9 +43,10 @@ export default function YearFilter({ items: milestoneItems, year }: { items: Ann
   const filtered = useMemo(
     () =>
       items.filter(
-        (a) => (!type || a.type === type) && (!milestoneOnly || a.milestone) && (!month || a.month === month),
+        (a) =>
+          (!type || a.type === type) && (!milestoneOnly || a.milestone) && (!month || a.month === month) && (!nth || a.n === nth),
       ),
-    [items, type, milestoneOnly, month],
+    [items, type, milestoneOnly, month, nth],
   );
 
   const csv = () => {
@@ -64,6 +74,14 @@ export default function YearFilter({ items: milestoneItems, year }: { items: Ann
                 {v}
               </option>
             ))}
+        </select>
+        <select value={nth} onChange={(e) => setNth(+e.target.value)} aria-label="周年">
+          <option value={0}>すべての周年</option>
+          {NTH_OPTIONS.map((x) => (
+            <option key={x} value={x}>
+              {x}周年
+            </option>
+          ))}
         </select>
         <select value={month} onChange={(e) => setMonth(+e.target.value)} aria-label="月">
           <option value={0}>すべての月</option>

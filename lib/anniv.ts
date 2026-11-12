@@ -66,3 +66,6 @@ export function formatDate(y: number | null, m: number | null, d: number | null)
   if (!d) return `${y}年${m}月`;
   return `${y}年${m}月${d}日`;
 }
+
+/** 絞り込みで選べる周年 */
+export const NTH_OPTIONS = [1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 75, 80, 90, 100];
