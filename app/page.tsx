@@ -33,13 +33,11 @@ export default function Home() {
         <div className="hero-inner">
           <div className="hero-brand">
             <Logo size="lg" />
-            <p className="hero-sitename">周年データベース「アニバーサル」</p>
           </div>
           <h1 className="hero-title">その周年を、ビジネスの好機に。</h1>
           <p className="hero-lead">
-            漫画・アニメ・ゲーム・映画・ブランド・ミュージシャン・上場企業
-            <br className="pc" />
-            約{Math.floor(entities.length / 100) * 100}件の「周年」を、年からも作品からも。
+            <span className="lead-genres">漫画・アニメ・ゲーム・映画・ブランド・ミュージシャン・上場企業</span>
+            <span>約{Math.floor(entities.length / 100) * 100}件の「周年」を、年からも作品からも。</span>
           </p>
           <HeroSearch years={yearRange()} defaultYear={next} />
         </div>
