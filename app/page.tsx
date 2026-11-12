@@ -3,6 +3,7 @@ import TodayList from "@/components/TodayList";
 import AnnivList from "@/components/AnnivList";
 import HeroArt from "@/components/HeroArt";
 import HeroSearch from "@/components/HeroSearch";
+import Mascot from "@/components/Mascot";
 import { getEntities } from "@/lib/data";
 import { anniversariesInYear } from "@/lib/anniv";
 import { BUILD_YEAR, yearRange } from "@/lib/site";
@@ -30,12 +31,17 @@ export default function Home() {
       <section className="hero full">
         <HeroArt />
         <div className="hero-inner">
-          <p className="hero-kicker">ANNIVERSARY DATABASE</p>
-          <h1 className="hero-title">
-            その周年を、
-            <br />
-            ビジネスの好機に。
-          </h1>
+          <div className="hero-head">
+            <div>
+              <p className="hero-kicker">ANNIVERSARY DATABASE</p>
+              <h1 className="hero-title">
+                その周年を、
+                <br />
+                ビジネスの好機に。
+              </h1>
+            </div>
+            <Mascot className="mascot" />
+          </div>
           <p className="hero-lead">
             漫画・アニメ・ゲーム・映画・ブランド・ミュージシャン・上場企業
             <br className="pc" />

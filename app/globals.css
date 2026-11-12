@@ -46,24 +46,31 @@ h2 { font-size: 1.15rem; margin: 0 0 12px; }
 .site-nav a:hover { color: var(--gold-light); text-decoration: none; }
 
 /* ファーストビュー */
-.hero { position: relative; background: var(--ink); color: #f4efe3; overflow: hidden; }
-.hero-art { position: absolute; inset: 0; width: 100%; height: 100%; }
-.hero-inner { position: relative; max-width: 1040px; margin: 0 auto; padding: 40px 16px 36px; }
-.hero-kicker { font-family: var(--serif-en); letter-spacing: 0.35em; font-size: 0.8rem; margin: 0; background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 600; }
-.hero-title { font-size: 2rem; line-height: 1.4; margin: 10px 0 12px; color: #fbf6ea; text-shadow: 0 2px 24px rgba(0,0,0,.5); }
-.hero-lead { color: #d9d3c4; font-size: 0.9rem; margin: 0 0 22px; }
+.hero { position: relative; background: #8f1d29; color: #fff8ec; overflow: hidden; }
+.hero-art { position: absolute; inset: 0; pointer-events: none; }
+.hero-art .stage { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-art .curtain { position: absolute; top: 0; height: 100%; width: clamp(26px, 9vw, 190px); }
+.hero-art .curtain-l { left: 0; }
+.hero-art .curtain-r { right: 0; transform: scaleX(-1); }
+.hero-art .valance { position: absolute; top: 0; left: 0; width: 100%; height: clamp(18px, 3.4vw, 40px); }
+.hero-inner { position: relative; max-width: 1040px; margin: 0 auto; padding: 36px 22px 36px; }
+.hero-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; }
+.mascot { width: 84px; height: auto; flex: none; margin-bottom: 4px; filter: drop-shadow(0 6px 12px rgba(60, 0, 8, .35)); }
+.hero-kicker { font-family: var(--serif-en); letter-spacing: 0.32em; font-size: 0.76rem; margin: 0; color: #f6dc9c; font-weight: 600; }
+.hero-title { font-size: 1.6rem; white-space: nowrap; line-height: 1.4; margin: 8px 0 4px; color: #fffaf0; text-shadow: 0 2px 16px rgba(70, 0, 10, .45); }
+.hero-lead { color: #fde9d6; font-size: 0.88rem; margin: 10px 0 20px; text-shadow: 0 1px 8px rgba(70, 0, 10, .4); }
 .hero-panels { display: grid; gap: 12px; }
-.hero-panel { background: rgba(18, 18, 24, 0.72); border: 1px solid rgba(226, 200, 140, 0.35); border-radius: var(--radius); padding: 16px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
-.panel-label { margin: 0; font-size: 0.78rem; color: var(--gold-light); letter-spacing: 0.08em; }
-.panel-no { font-family: var(--serif-en); font-size: 1rem; margin-right: 8px; color: var(--gold-light); }
-.panel-title { color: #fbf6ea; font-size: 1.15rem; margin: 2px 0 12px; }
+.hero-panel { background: rgba(255, 251, 243, 0.96); color: var(--fg); border: 1px solid #f0cf7e; border-radius: 14px; padding: 16px; box-shadow: 0 10px 30px rgba(60, 0, 10, .25); }
+.panel-label { margin: 0; font-size: 0.78rem; color: #a3121f; letter-spacing: 0.08em; }
+.panel-no { font-family: var(--serif-en); font-size: 1rem; margin-right: 8px; color: var(--gold-dark); }
+.panel-title { color: var(--fg); font-size: 1.15rem; margin: 2px 0 12px; }
 .field-row { display: flex; gap: 8px; align-items: center; }
 .field-row + .field-row { margin-top: 8px; }
 .field-row input, .field-row select {
   flex: 1; min-width: 0; height: 46px; font-size: 16px; padding: 0 12px; border-radius: var(--radius);
   border: 1px solid rgba(226, 200, 140, 0.45); background: rgba(255,255,255,0.96); color: var(--fg); font-family: var(--sans);
 }
-.field-row .joiner { color: #d9d3c4; font-size: 0.9rem; }
+.field-row .joiner { color: var(--muted); font-size: 0.9rem; }
 .btn-gold { height: 46px; padding: 0 20px; border: 0; border-radius: var(--radius); background: var(--gold-grad); color: #1b1408; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.1em; cursor: pointer; white-space: nowrap; font-family: var(--sans); }
 .btn-gold:hover { filter: brightness(1.06); }
 .btn-outline { display: inline-block; border: 1px solid var(--gold); color: var(--gold-dark); padding: 10px 20px; border-radius: var(--radius); letter-spacing: 0.08em; font-size: 0.9rem; }
@@ -161,8 +168,10 @@ table.facts th { color: var(--muted); font-weight: 500; white-space: nowrap; }
   body { font-size: 16px; }
   .pc { display: inline; }
   h1 { font-size: 1.9rem; }
-  .hero-inner { padding: 72px 24px 64px; }
+  .hero-inner { padding: 76px 24px 64px; }
+  .hero-head { padding-right: 40px; }
   .hero-title { font-size: 2.8rem; }
+  .mascot { width: 190px; }
   .hero-lead { font-size: 1rem; margin-bottom: 32px; }
   .hero-panels { grid-template-columns: 1fr 1fr; gap: 16px; }
   .hero-panel { padding: 22px; }
