@@ -1,62 +1,128 @@
 import Link from "next/link";
 import TodayList from "@/components/TodayList";
 import AnnivList from "@/components/AnnivList";
+import HeroArt from "@/components/HeroArt";
+import HeroSearch from "@/components/HeroSearch";
 import { getEntities } from "@/lib/data";
 import { anniversariesInYear } from "@/lib/anniv";
-import { BUILD_YEAR, SITE_DESCRIPTION, yearRange } from "@/lib/site";
+import { BUILD_YEAR, yearRange } from "@/lib/site";
 import { featureTitle, featureTypes } from "@/lib/feature";
+import { ENTITY_TYPES } from "@/lib/types";
 
 export default function Home() {
   const next = BUILD_YEAR + 1;
-  const big = anniversariesInYear(getEntities(), next)
-    .filter((a) => a.n % 10 === 0)
-    .sort((a, b) => b.n - a.n)
-    .slice(0, 10);
+  const entities = getEntities();
+  const nextYear = anniversariesInYear(entities, next);
+  // ジャンルが偏らないよう、各ジャンルから大きい節目を順番に拾う
+  const byType = new Map<string, typeof nextYear>();
+  for (const a of nextYear.filter((a) => a.n % 10 === 0 || a.n % 25 === 0).sort((a, b) => b.n - a.n)) {
+    const list = byType.get(a.type) ?? [];
+    list.push(a);
+    byType.set(a.type, list);
+  }
+  const big: typeof nextYear = [];
+  for (let round = 0; big.length < 8 && round < 8; round++) {
+    for (const list of byType.values()) if (list[round] && big.length < 8) big.push(list[round]);
+  }
+  const counts = Object.keys(ENTITY_TYPES).length;
   return (
     <>
-      <section className="hero">
-        <h1>あの作品は何周年？周年がすぐわかる</h1>
-        <p className="lead">{SITE_DESCRIPTION}</p>
-        <form action="/search/" method="get">
-          <input name="q" type="search" placeholder="作品名・キャラ名・企業名で逆引き" aria-label="逆引き検索" />
-          <button className="btn" type="submit">
-            検索
-          </button>
-        </form>
+      <section className="hero full">
+        <HeroArt />
+        <div className="hero-inner">
+          <p className="hero-kicker">ANNIVERSARY DATABASE</p>
+          <h1 className="hero-title">
+            その周年を、
+            <br />
+            ビジネスの好機に。
+          </h1>
+          <p className="hero-lead">
+            漫画・アニメ・ゲーム・映画・ブランド・ミュージシャン・上場企業
+            <br className="pc" />
+            約{Math.floor(entities.length / 100) * 100}件の「周年」を、年からも作品からも。
+          </p>
+          <HeroSearch years={yearRange()} defaultYear={next} />
+        </div>
       </section>
 
-      <section className="card">
-        <h2>年から探す</h2>
-        <ul className="years">
-          {yearRange().map((y) => (
-            <li key={y}>
-              <Link href={`/year/${y}/`} className={y === BUILD_YEAR ? "current" : ""}>
-                {y}年
+      <section className="section">
+        <div className="section-head">
+          <p className="eyebrow">NEXT YEAR</p>
+          <h2>{next}年、大きな節目を迎えるもの</h2>
+        </div>
+        <ul className="medal-grid">
+          {big.map((a) => (
+            <li key={a.entityId + a.kind}>
+              <Link href={`/e/${a.entityId}/`} className="medal-card">
+                <span className={`medal n${a.n >= 50 ? "gold" : a.n >= 25 ? "silver" : "bronze"}`}>
+                  <b>{a.n}</b>
+                  <small>th</small>
+                </span>
+                <span className="medal-body">
+                  <span className={`tag t-${a.type}`}>{ENTITY_TYPES[a.type]}</span>
+                  <strong>{a.name}</strong>
+                  <small>
+                    {a.baseYear}年{a.month ? `${a.month}月` : ""}
+                    {a.day ? `${a.day}日` : ""}〜
+                  </small>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <p className="more">
+          <Link href={`/year/${next}/`}>{next}年の周年をすべて見る</Link>
+        </p>
+      </section>
+
+      <section className="section">
+        <TodayList />
+      </section>
+
+      <section className="section">
+        <div className="section-head">
+          <p className="eyebrow">FEATURES</p>
+          <h2>{next}年 周年特集</h2>
+        </div>
+        <ul className="feature-grid">
+          {featureTypes().map((t) => (
+            <li key={t}>
+              <Link href={`/feature/${next}/${t}/`}>
+                <span className="feature-type">{ENTITY_TYPES[t]}</span>
+                <span>{featureTitle(next, t)}</span>
               </Link>
             </li>
           ))}
         </ul>
       </section>
 
-      <TodayList />
-
-      <section className="card">
-        <h2>{next}年に大きな節目を迎えるもの</h2>
-        <AnnivList items={big} />
-        <p>
-          <Link href={`/year/${next}/`}>{next}年の周年をすべて見る →</Link>
-        </p>
-      </section>
-
-      <section className="card">
-        <h2>特集</h2>
-        <ul className="grid">
-          {featureTypes().map((t) => (
-            <li key={t}>
-              <Link href={`/feature/${next}/${t}/`}>{featureTitle(next, t)}</Link>
+      <section className="section">
+        <div className="section-head">
+          <p className="eyebrow">BY YEAR</p>
+          <h2>年から探す</h2>
+        </div>
+        <ul className="years">
+          {yearRange().map((y) => (
+            <li key={y}>
+              <Link href={`/year/${y}/`} className={y === BUILD_YEAR ? "current" : ""}>
+                {y}
+              </Link>
             </li>
           ))}
         </ul>
+      </section>
+
+      <section className="section">
+        <div className="biz-card">
+          <p className="eyebrow">FOR BUSINESS</p>
+          <h2>周年企画のネタ探しに</h2>
+          <p>
+            年別ページでは、ジャンル・月・周年で絞り込み、そのままCSVで保存できます。出版・広告・販促の企画書づくりにお使いください。全{counts - 1}ジャンルに対応しています。
+          </p>
+          <Link href={`/year/${next}/`} className="btn-outline">
+            {next}年のリストを見る
+          </Link>
+        </div>
       </section>
     </>
   );
