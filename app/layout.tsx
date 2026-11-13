@@ -73,6 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </Link>
               ))}
               <Link href="/about/">このサイトについて・情報提供</Link>
+              <Link href="/privacy/">プライバシーポリシー</Link>
             </nav>
             <p className="fine">
               当サイトはアフィリエイト広告を利用しています。周年の日付は公開情報をもとにしており、誤りを含む場合があります。

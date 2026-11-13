@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "このサイトについて",
@@ -35,7 +36,10 @@ export default function About() {
       </section>
       <section className="card">
         <h2>広告について</h2>
-        <p>当サイトはAmazonアソシエイト、楽天アフィリエイトなどのアフィリエイトプログラムに参加しています。</p>
+        <p>
+          当サイトはAmazonアソシエイト、楽天アフィリエイトなどのアフィリエイトプログラムに参加しています。詳しくは
+          <Link href="/privacy/">プライバシーポリシー・免責事項</Link>をご覧ください。
+        </p>
       </section>
     </>
   );

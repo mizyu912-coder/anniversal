@@ -207,3 +207,16 @@ table.facts th { color: var(--muted); font-weight: 500; white-space: nowrap; }
 .intro p { margin: 0; line-height: 1.95; }
 .intro .credit { margin-top: 10px; font-size: 0.76rem; color: var(--muted); }
 .intro .credit a { color: var(--muted); text-decoration: underline; }
+
+/* 年別ページ：月タブと「注目→日付順」 */
+.month-tabs { display: flex; flex-wrap: wrap; gap: 5px; margin: 4px 0 10px; }
+.month-tabs button { display: inline-flex; align-items: baseline; gap: 4px; height: 36px; padding: 0 9px; border: 1px solid var(--line); border-radius: 999px; background: #fff; font: inherit; font-size: 0.88rem; cursor: pointer; color: inherit; }
+.month-tabs button small { font-size: 0.72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.month-tabs button.current { background: #15100a; border-color: #15100a; color: #f3e3b6; }
+.month-tabs button.current small { color: #d6ad5c; }
+.month-tabs button:disabled { opacity: 0.4; cursor: default; }
+.anniv-top { margin: 8px 0 28px; padding: 4px 16px 8px; border: 1px solid var(--gold); border-radius: var(--radius); background: #fffaf0; }
+.anniv-top h2, .anniv-bydate h2 { font-size: 1.1rem; margin: 14px 0 4px; }
+.anniv-top .anniv-list li:last-child { border-bottom: 0; }
+.month-group h3 { font-size: 0.95rem; margin: 20px 0 0; padding: 6px 0; border-bottom: 2px solid var(--gold); font-family: var(--serif-ja); }
+@media (max-width: 600px) { .month-tabs { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; } .month-tabs button { flex: none; } }
