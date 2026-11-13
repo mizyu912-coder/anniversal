@@ -17,7 +17,9 @@ export const metadata: Metadata = {
 };
 
 /** Google アナリティクス 4 の測定ID（G-XXXXXXX）。未設定なら読み込まない */
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
+// 測定ID は G-XXXXXXXXXX。「G-」を付け忘れて登録しても動くように補う
+const GA_RAW = (process.env.NEXT_PUBLIC_GA_ID || "").trim();
+const GA_ID = GA_RAW && !/^G-/i.test(GA_RAW) ? `G-${GA_RAW}` : GA_RAW;
 // AdSense のサイト運営者ID（ca-pub-...）。設定するとサイト確認用のコードが入る（ads.txt は app/ads.txt で生成）
 const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "";
 
