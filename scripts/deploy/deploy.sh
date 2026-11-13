@@ -28,6 +28,8 @@ cleanup() {  # 失敗時はサーバーに残ったzipとPHPを消す
   curl -sS --ssl-reqd --user "$FTP_USERNAME:$FTP_PASSWORD" "ftp://$FTP_SERVER/$DIR" \
     -Q "-DELE $ZIP" -Q "-DELE $PHP" -o /dev/null || true
 }
-RES="$(curl -sS --max-time 600 --resolve "$HOST:80:$IP" "http://$HOST/$PHP?t=$TOKEN" || true)"
+# SSL有効化後は http が https へ転送されるため https で呼ぶ（SSL発行前は http にフォールバック）
+RES="$(curl -sS --max-time 600 --resolve "$HOST:443:$IP" "https://$HOST/$PHP?t=$TOKEN" || true)"
+case "$RES" in OK*) ;; *) RES="$(curl -sS --max-time 600 --resolve "$HOST:80:$IP" "http://$HOST/$PHP?t=$TOKEN" || true)" ;; esac
 echo "server: $RES"
 case "$RES" in OK*) ;; *) echo "展開に失敗しました" >&2; cleanup; exit 1 ;; esac
