@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 import AdSlot from "@/components/AdSlot";
 import AffiliateLinks from "@/components/AffiliateLinks";
 import Countdown from "@/components/Countdown";
 import { getChildren, getEntities, getEntity, getSameYear } from "@/lib/data";
-import { formatDate, isMilestone } from "@/lib/anniv";
+import { formatDate, isMilestone, nextMilestone } from "@/lib/anniv";
 import { BASE_KINDS, ENTITY_TYPES } from "@/lib/types";
 import type { Entity } from "@/lib/types";
 import { BUILD_YEAR, SITE_URL, YEAR_FROM, YEAR_TO } from "@/lib/site";
@@ -29,8 +30,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : bd
       ? `${e.name}の誕生日は${formatDate(null, bd.month, bd.day)}。`
       : `${e.name}の周年情報。`;
-  const title = e.type === "character" ? `${e.name}の誕生日はいつ？` : `${e.name}は何周年？周年はいつ？`;
-  return { title, description: desc, alternates: { canonical: `/e/${e.id}/` } };
+  // 次の節目（ビルド日基準）をタイトルに入れて、検索結果で答えが見えるようにする
+  const nm = b ? nextMilestone(b, new Date()) : null;
+  const title =
+    e.type === "character"
+      ? `${e.name}の誕生日はいつ？${bd ? `${formatDate(null, bd.month, bd.day)}生まれ` : ""}`
+      : nm
+        ? `${e.name}は何周年？${nm.year}年に${nm.n}周年`
+        : `${e.name}は何周年？周年はいつ？`;
+  const description = nm && b ? `${desc.replace(/。今後の.*$/, "")}。次の節目は${nm.year}年の${nm.n}周年。今後の周年の年月日とカウントダウンを掲載。` : desc;
+  return { title, description, alternates: { canonical: `/e/${e.id}/` } };
 }
 
 function jsonLd(e: Entity) {
@@ -61,6 +70,7 @@ export default async function EntityPage({ params }: Props) {
   const parent = e.parentId ? getEntity(e.parentId) : undefined;
   const children = getChildren(e.id);
   const sameYear = getSameYear(e);
+  const b0 = mainBase(e) ?? e.bases.find((x) => x.kind === "birthday") ?? null;
   const years = [];
   for (const b of e.bases) {
     if (b.year === null || b.kind === "birthday") continue;
@@ -74,9 +84,7 @@ export default async function EntityPage({ params }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd(e)) }} />
-      <p className="breadcrumb">
-        <Link href="/">トップ</Link> › {ENTITY_TYPES[e.type]} › {e.name}
-      </p>
+      <Breadcrumb items={[[ENTITY_TYPES[e.type], `/type/${e.type}/`], [e.name]]} />
       <h1>
         {e.name} <span className={`tag t-${e.type}`}>{ENTITY_TYPES[e.type]}</span>
       </h1>
@@ -125,6 +133,16 @@ export default async function EntityPage({ params }: Props) {
                 </td>
               </tr>
             ))}
+            {b0 && b0.month && b0.day && (
+              <tr>
+                <th>同じ日</th>
+                <td>
+                  <Link href={`/today/${b0.month}-${b0.day}/`}>
+                    {b0.month}月{b0.day}日は何の日？
+                  </Link>
+                </td>
+              </tr>
+            )}
             {e.genre && (
               <tr>
                 <th>ジャンル</th>
@@ -199,7 +217,10 @@ export default async function EntityPage({ params }: Props) {
       {sameYear && (
         <section className="card">
           <h2>{sameYear.year}年に生まれた作品・ブランド・企業</h2>
-          <p className="muted small">{e.name}と同じ年に誕生し、同じタイミングで周年を迎えます。</p>
+          <p className="muted small">
+            {e.name}と同じ年に誕生し、同じタイミングで周年を迎えます。
+            <Link href={`/born/${sameYear.year}/`}>{sameYear.year}年に生まれたものをすべて見る</Link>
+          </p>
           <ul className="grid">
             {sameYear.list.map((c) => (
               <li key={c.id}>

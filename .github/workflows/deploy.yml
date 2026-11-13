@@ -39,7 +39,8 @@ jobs:
           NEXT_PUBLIC_ADSENSE_SLOT: ${{ vars.ADSENSE_SLOT }}
       # 画面遷移の先読み用ファイル（約8,500個）はアップロードしない。
       # なくても通常のページ遷移になるだけで表示に影響はない
-      - run: find out -type f -name '*.txt' ! -path 'out/robots.txt' -delete
+      # robots.txt・ads.txt（AdSense）・IndexNow のキーファイル（英数字32桁.txt）は残す
+      - run: find out -regextype posix-extended -type f -name '*.txt' ! -path 'out/robots.txt' ! -path 'out/ads.txt' ! -regex 'out/[0-9a-f]{32}\.txt' -delete
       - uses: actions/upload-artifact@v4
         with:
           name: site
@@ -67,4 +68,14 @@ jobs:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+          SITE_URL: ${{ vars.SITE_URL }}
+      # Bing などに更新を通知（失敗してもデプロイは成功扱い）
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            scripts
+            public
+          path: src
+      - run: cd src && node scripts/indexnow.mjs ../out/sitemap.xml || true
+        env:
           SITE_URL: ${{ vars.SITE_URL }}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 import AdSlot from "@/components/AdSlot";
 import Spotlight from "@/components/Spotlight";
 import { getEntities } from "@/lib/data";
@@ -51,9 +52,7 @@ export default async function MonthlyPage({ params }: Props) {
   const next = month === 12 ? (FEATURE_YEARS.includes(year + 1) ? [year + 1, 1] : null) : [year, month + 1];
   return (
     <article className="article">
-      <p className="breadcrumb">
-        <Link href="/">トップ</Link> › <Link href={`/matome/${year}/`}>{year}年まとめ</Link> › {month}月
-      </p>
+      <Breadcrumb items={[[`${year}年まとめ`, `/matome/${year}/`], [`${month}月`]]} />
       <p className="eyebrow">
         ANNIVERSARY {year}.{String(month).padStart(2, "0")}
       </p>

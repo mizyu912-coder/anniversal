@@ -42,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
         />
+        <link rel="alternate" type="application/rss+xml" title={SITE_NAME} href="/feed.xml" />
         {GA_ID && (
           <>
             <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
@@ -83,6 +84,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   {label}
                 </Link>
               ))}
+              <Link href="/today/">今日は何の日</Link>
+              <Link href="/born/">生まれ年から探す</Link>
+              <Link href="/milestone/">節目別の特集</Link>
+              <Link href="/feed.xml">RSS</Link>
               <Link href="/about/">このサイトについて・情報提供</Link>
               <Link href="/privacy/">プライバシーポリシー</Link>
             </nav>

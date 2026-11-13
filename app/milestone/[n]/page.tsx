@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 import AdSlot from "@/components/AdSlot";
 import Spotlight from "@/components/Spotlight";
 import { getEntities } from "@/lib/data";
@@ -55,9 +56,7 @@ export default async function MilestonePage({ params }: Props) {
   const y1 = FEATURE_YEARS[FEATURE_YEARS.length - 1];
   return (
     <article className="article">
-      <p className="breadcrumb">
-        <Link href="/">トップ</Link> › <Link href="/milestone/">節目別の特集</Link> › {n}周年
-      </p>
+      <Breadcrumb items={[["節目別の特集", "/milestone/"], [`${n}周年`]]} />
       <p className="eyebrow">{n}TH ANNIVERSARY</p>
       <h1>
         {n}周年を迎える作品・ブランド・企業（{y0}〜{y1}年）

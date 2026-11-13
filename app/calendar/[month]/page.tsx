@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 import NthThisYear from "@/components/NthThisYear";
 import { entriesInMonth, MONTHS } from "@/lib/calendar";
 import { BASE_KINDS, ENTITY_TYPES } from "@/lib/types";
@@ -24,9 +25,7 @@ export default async function CalendarMonth({ params }: Props) {
   const items = entriesInMonth(month, false);
   return (
     <>
-      <p className="breadcrumb">
-        <Link href="/">トップ</Link> › <Link href="/calendar/">周年カレンダー</Link> › {month}月
-      </p>
+      <Breadcrumb items={[["周年カレンダー", "/calendar/"], [`${month}月`]]} />
       <h1>{month}月の記念日</h1>
       <ul className="years">
         {MONTHS.map((m) => (

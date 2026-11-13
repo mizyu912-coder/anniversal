@@ -1,5 +1,8 @@
 import Link from "next/link";
 import TodayList from "@/components/TodayList";
+import JsonLd from "@/components/JsonLd";
+import { websiteLd } from "@/lib/seo";
+import { bornYears } from "@/lib/pages";
 import AnnivList from "@/components/AnnivList";
 import HeroArt from "@/components/HeroArt";
 import HeroSearch from "@/components/HeroSearch";
@@ -37,8 +40,10 @@ export default function Home() {
     const d = new Date(now.getFullYear(), now.getMonth() + i, 1);
     if (FEATURE_YEARS.includes(d.getFullYear())) upcoming.push([d.getFullYear(), d.getMonth() + 1]);
   }
+  const born = bornYears().filter((y) => y >= 1960 && y <= BUILD_YEAR - 1 && (BUILD_YEAR + 1 - y) % 5 === 0).reverse();
   return (
     <>
+      <JsonLd data={websiteLd()} />
       <section className="hero full">
         <HeroArt />
         <div className="hero-inner">
@@ -147,6 +152,25 @@ export default function Home() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section className="section">
+        <div className="section-head">
+          <p className="eyebrow">BORN IN</p>
+          <h2>生まれ年から探す</h2>
+        </div>
+        <p className="muted small">同い年の作品は？ その年に始まった・発売されたものを一覧で。</p>
+        <ul className="years">
+          {born.map((y) => (
+            <li key={y}>
+              <Link href={`/born/${y}/`}>{y}</Link>
+            </li>
+          ))}
+        </ul>
+        <p className="more">
+          <Link href="/born/">すべての年を見る</Link>
+          <Link href="/type/anime/">種類別の一覧</Link>
+        </p>
       </section>
 
       <section className="section">
