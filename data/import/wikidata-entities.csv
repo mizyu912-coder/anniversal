@@ -8,7 +8,6 @@ q20165,company,日産自動車,,Nissan,,,,Q20165,90,日産自動車
 q181642,company,スズキ,,Suzuki Motor Corporation,,,,Q181642,83,スズキ (企業)
 q35996,company,マツダ,,Mazda,,,,Q35996,82,マツダ
 q53247,company,パナソニックホールディングス,,Panasonic Holdings Corporation,,,,Q53247,79,パナソニックホールディングス
-q49125,brand,東芝,,Toshiba,,,,Q49125,75,東芝
 q189540,movie,七人の侍,,Seven Samurai,映画,,,Q189540,74,七人の侍
 q173626,game,パックマン,,,ゲームソフト,,,Q173626,73,パックマン
 q186572,movie,もののけ姫,,Princess Mononoke,映画,,,Q186572,73,もののけ姫
@@ -52,10 +51,8 @@ q888131,movie,風立ちぬ,,The Wind Rises,映画,,,Q888131,52,風立ちぬ (201
 q12384,game,ドンキーコング,,,ゲームソフト,,,Q12384,51,ドンキーコング
 q179767,musician,X JAPAN,,,グループ,,,Q179767,51,X JAPAN
 q216995,game,スーパーマリオ64,,Super Mario 64,ゲームソフト,,,Q216995,51,スーパーマリオ64
-q259340,brand,セブン-イレブン,,7-Eleven,,,,Q259340,51,セブン-イレブン (米国)
 q120300,manga,クレヨンしんちゃん,,Crayon Shin-chan,漫画,,,Q120300,50,クレヨンしんちゃん
 q20475,movie,用心棒,,Yojimbo,映画,,,Q20475,50,用心棒
-q223684,character,ララ・クロフト,ららくろふと,Lara Croft,,,,Q223684,50,ララ・クロフト
 q275950,game,バイオハザード4,,Resident Evil 4,ゲームソフト,,,Q275950,50,バイオハザード4
 q696071,manga,HUNTER×HUNTER,,,漫画,,,Q696071,50,HUNTER×HUNTER
 q18047903,manga,僕のヒーローアカデミア,,My Hero Academia,漫画,,,Q18047903,49,僕のヒーローアカデミア
@@ -75,7 +72,6 @@ q207786,game,たまごっち,,Tamagotchi,ゲームソフト,,,Q207786,46,たま�
 q272015,manga,らんま1/2,,Ranma ½,漫画,,,Q272015,46,らんま1/2
 q47482560,movie,君たちはどう生きるか,,The Boy and the Heron,映画,,,Q47482560,46,君たちはどう生きるか (映画)
 q639619,game,スーパーマリオブラザーズ3,,Super Mario Bros. 3,ゲームソフト,,,Q639619,46,スーパーマリオブラザーズ3
-q845864,character,クッパ,,Bowser,,q28234671,,Q845864,46,クッパ (ゲームキャラクター)
 q853143,game,スーパーマリオワールド,,,ゲームソフト,,,Q853143,46,スーパーマリオワールド
 q219610,manga,シャーマンキング,,Shaman King,漫画,,,Q219610,45,シャーマンキング
 q232588,musician,ミヨシ・ウメキ,,Miyoshi Umeki,ソロ,,,Q232588,45,ミヨシ・ウメキ
@@ -89,7 +85,6 @@ q257818,movie,蜘蛛巣城,,Throne of Blood,映画,,,Q257818,44,蜘蛛巣城
 q327247,company,アシックス,,ASICS,,,,Q327247,44,アシックス
 q49182,manga,カードキャプターさくら,,Cardcaptor Sakura,漫画,,,Q49182,44,カードキャプターさくら
 q507338,company,日経平均株価,,Nikkei 225,,,,Q507338,44,日経平均株価
-q729150,character,パニッシャー,,Punisher,,q2633916,,Q729150,44,パニッシャー
 q15293047,movie,STAND BY ME ドラえもん,,Stand by Me Doraemon,映画,,,Q15293047,43,STAND BY ME ドラえもん
 q245006,game,ファイナルファンタジーVIII,,Final Fantasy VIII,ゲームソフト,,,Q245006,43,ファイナルファンタジーVIII
 q688619,company,オリンパス,,Olympus Corporation,,,,Q688619,43,オリンパス
@@ -154,7 +149,6 @@ q234094,musician,栗山千明,くりやま ちあき,Chiaki Kuriyama,ソロ,,,Q2
 q370055,game,ゼルダの伝説 神々のトライフォース,,The Legend of Zelda: A Link to the Past,ゲームソフト,,,Q370055,38,ゼルダの伝説 神々のトライフォース
 q387674,movie,ファイナルファンタジーVII アドベントチルドレン,,Final Fantasy VII: Advent Children,映画,,,Q387674,38,ファイナルファンタジーVII アドベントチルドレン
 q44315,musician,Hide,,,ソロ,,,Q44315,38,Hide
-q632908,character,くまのパディントン,,Paddington Bear,,,,Q632908,38,くまのパディントン
 q682894,company,東京地下鉄,とうきょうちかてつ,Tokyo Metro,,,,Q682894,38,東京地下鉄
 q691508,company,マキタ,,Makita,,,,Q691508,38,マキタ
 q721737,movie,ゲド戦記,,Tales from Earthsea,映画,,,Q721737,38,ゲド戦記 (映画)
@@ -209,7 +203,6 @@ q1342961,musician,三浦春馬,みうら はるま,Haruma Miura,ソロ,,,Q134296
 q13637192,anime,キルラキル,,Kill la Kill,テレビアニメ,,,Q13637192,35,キルラキル
 q159614,company,セイコーエプソン,,Seiko Epson,,,,Q159614,35,セイコーエプソン
 q17154554,game,Bloodborne,,,ゲームソフト,,,Q17154554,35,Bloodborne
-q17180,brand,ケンウッド,,Kenwood Corporation,,,,Q17180,35,ケンウッド
 q194726,movie,コクリコ坂から,,From Up on Poppy Hill,映画,,,Q194726,35,
 q225912,game,キングダム ハーツ,,Kingdom Hearts,ゲームソフト,,,Q225912,35,キングダム ハーツ
 q244878,movie,天国と地獄,,High and Low,映画,,,Q244878,35,天国と地獄 (映画)
@@ -244,7 +237,6 @@ q717600,game,メタルギアソリッドV ファントムペイン,,Metal Gear S
 q843545,character,夜神月,,Light Yagami,,q1834,,Q843545,34,夜神月
 q861205,game,ゼルダの伝説 スカイウォードソード,,The Legend of Zelda: Skyward Sword,ゲームソフト,,,Q861205,34,ゼルダの伝説 スカイウォードソード
 q862708,movie,地獄門,,Gate of Hell,映画,,,Q862708,34,地獄門
-q881024,character,ブレイド (マーベル・コミック),,Blade,,q2461966,,Q881024,34,ブレイド (マーベル・コミック)
 q930990,manga,ヴィンランド・サガ,,Vinland Saga,漫画,,,Q930990,34,ヴィンランド・サガ
 q96376192,movie,劇場版 鬼滅の刃 無限列車編,,Demon Slayer: Kimetsu no Yaiba the Movie: Mugen Train,映画,,,Q96376192,34,劇場版「鬼滅の刃」無限列車編
 q1050298,game,スーパーマリオ 3Dランド,,Super Mario 3D Land,ゲームソフト,,,Q1050298,33,スーパーマリオ 3Dランド
@@ -269,7 +261,6 @@ q648280,company,三菱重工業,,Mitsubishi Heavy Industries,,,,Q648280,33,三�
 q687559,game,ファイナルファンタジーIII,,Final Fantasy III,ゲームソフト,,,Q687559,33,ファイナルファンタジーIII
 q696302,manga,黒執事,,Black Butler,漫画,,,Q696302,33,黒執事
 q745099,company,京セラ,,Kyocera,,,,Q745099,33,京セラ
-q771213,character,アン・シャーリー,,Anne Shirley,,q514043,,Q771213,33,アン・シャーリー
 q840121,game,Wii Fit,,,ゲームソフト,,,Q840121,33,Wii Fit
 q846051,game,ワンダと巨像,,Shadow of the Colossus,ゲームソフト,,,Q846051,33,ワンダと巨像
 q846167,game,メタルギアソリッド4,,Metal Gear Solid 4: Guns of the Patriots,ゲームソフト,,,Q846167,33,メタルギアソリッド4
@@ -331,7 +322,6 @@ q1154227,game,ポケットモンスター プラチナ,,Pokémon Platinum,ゲー
 q118911,company,コニカミノルタ,,Konica Minolta,,,,Q118911,31,コニカミノルタ
 q1195150,game,大乱闘スマッシュブラザーズ for Nintendo 3DS / Wii U,,Super Smash Bros. for Nintendo 3DS and Wii U,ゲームソフト,,,Q1195150,31,大乱闘スマッシュブラザーズ for Nintendo 3DS / Wii U
 q1205051,movie,パーフェクトブルー,,Perfect Blue,映画,,,Q1205051,31,パーフェクトブルー
-q1345267,brand,サントリー,,Suntory,,,,Q1345267,31,サントリー
 q149998,game,マリオストーリー,,Paper Mario,ゲームソフト,,,Q149998,31,マリオストーリー
 q1634355,movie,どですかでん,,Dodes'ka-den,映画,,,Q1634355,31,どですかでん
 q178778,company,リコー,,Ricoh,,,,Q178778,31,リコー
@@ -401,7 +391,6 @@ q1054787,company,NTT,,"NTT, Inc.",,,,Q1054787,29,NTT
 q1072777,movie,星を追う子ども,,Children Who Chase Lost Voices,映画,,,Q1072777,29,星を追う子ども
 q108069627,manga,ダンダダン,,Dandadan,漫画,,,Q108069627,29,ダンダダン
 q1139272,game,クレイジータクシー,,Crazy Taxi,ゲームソフト,,,Q1139272,29,
-q115146,brand,東京メトロポリタンテレビジョン,,Tokyo MX,,,,Q115146,29,東京メトロポリタンテレビジョン
 q11611205,manga,聲の形,,A Silent Voice,漫画,,,Q11611205,29,聲の形
 q1191685,company,ファミリーマート,,Family Mart,,,,Q1191685,29,ファミリーマート (企業)
 q128969,anime,カリメロ,,Calimero,テレビアニメ,,,Q128969,29,カリメロ
@@ -575,7 +564,6 @@ q1797666,game,マリオ&ルイージRPG2,,Mario & Luigi: Partners in Time,ゲー
 q187662,musician,渡辺麻友,わたなべ まゆ,Mayu Watanabe,ソロ,,,Q187662,26,渡辺麻友
 q2007022,game,悪魔城ドラキュラX 月下の夜想曲,,,ゲームソフト,,,Q2007022,26,悪魔城ドラキュラX 月下の夜想曲
 q204105,game,ディグダグ,,Dig Dug,ゲームソフト,,,Q204105,26,ディグダグ
-q2082223,character,ジョン・マクレーン,,John McClane,,q1531134,,Q2082223,26,ジョン・マクレーン (架空の人物)
 q21563294,game,グランツーリスモSPORT,,Gran Turismo Sport,ゲームソフト,,,Q21563294,26,グランツーリスモSPORT
 q22123892,manga,はたらく細胞,,Cells at Work!,漫画,,,Q22123892,26,はたらく細胞
 q2273270,movie,生きものの記録,いきもののきろく,I Live in Fear,映画,,,Q2273270,26,生きものの記録
@@ -695,7 +683,6 @@ q114494831,manga,光が死んだ夏,,The Summer Hikaru Died,漫画,,,Q114494831,
 q1150928,game,ソニック ワールドアドベンチャー,,Sonic Unleashed,ゲームソフト,,,Q1150928,24,ソニック ワールドアドベンチャー
 q1154232,musician,前田敦子,まえだ あつこ,Atsuko Maeda,ソロ,,,Q1154232,24,前田敦子
 q1197213,manga,グラップラー刃牙,,Baki the Grappler,漫画,,,Q1197213,24,グラップラー刃牙
-q1223440,character,リュウ,,Ryu,,,,Q1223440,24,リュウ (ストリートファイター)
 q124672125,game,Pokémon LEGENDS Z-A,,Pokémon Legends: Z-A,ゲームソフト,,,Q124672125,24,Pokémon LEGENDS Z-A
 q126199700,game,アストロボット,,,ゲームソフト,,,Q126199700,24,アストロボット
 q1295105,company,野村ホールディングス,,Nomura Holdings,,,,Q1295105,24,野村ホールディングス
@@ -725,10 +712,8 @@ q2291002,game,ポケモンコロシアム,,Pokémon Colosseum,ゲームソフト
 q2301369,game,キングダム ハーツ 3D ［ドリーム ドロップ ディスタンス］,,Kingdom Hearts 3D: Dream Drop Distance,ゲームソフト,,,Q2301369,24,キングダム ハーツ 3D ［ドリーム ドロップ ディスタンス］
 q237405,musician,平野綾,ひらの あや,Aya Hirano,ソロ,,,Q237405,24,平野綾
 q24326087,game,ウイニングイレブン 2017,,Pro Evolution Soccer 2017,ゲームソフト,,,Q24326087,24,ウイニングイレブン 2017
-q247120,character,ネオ,,Neo,,,,Q247120,24,
 q25104182,anime,ユーリ on ICE,,Yuri on Ice,テレビアニメ,,,Q25104182,24,ユーリ!!! on ICE
 q254611,musician,岡田有希子,おかだ ゆきこ,Yukiko Okada,ソロ,,,Q254611,24,岡田有希子
-q2608870,character,クッパJr.,,Bowser Jr.,,,,Q2608870,24,クッパJr.
 q28068926,manga,古見さんは、コミュ症です。,,Komi Can't Communicate,漫画,,,Q28068926,24,古見さんは、コミュ症です。
 q281110,game,キングダム ハーツ バース バイ スリープ,,Kingdom Hearts: Birth by Sleep,ゲームソフト,,,Q281110,24,キングダム ハーツ バース バイ スリープ
 q28308644,game,1-2-Switch,,,ゲームソフト,,,Q28308644,24,1-2-Switch
@@ -869,7 +854,6 @@ q1134047,musician,菅田将暉,,Masaki Suda,ソロ,,,Q1134047,22,菅田将暉
 q1141910,musician,矢島舞美,やじま まいみ,Maimi Yajima,ソロ,,,Q1141910,22,矢島舞美
 q1142789,musician,藤本美貴,ふじもと みき,Miki Fujimoto,ソロ,,,Q1142789,22,藤本美貴
 q1143285,game,ベア・ナックル,,Streets of Rage,ゲームソフト,,,Q1143285,22,
-q1143528,brand,Key,,,,,,Q1143528,22,Key (ゲームブランド)
 q1150685,game,ソニックライダーズ シューティングスターストーリー,,Sonic Riders: Zero Gravity,ゲームソフト,,,Q1150685,22,ソニックライダーズ シューティングスターストーリー
 q1150791,anime,名探偵ホームズ,,Sherlock Hound,テレビアニメ,,,Q1150791,22,名探偵ホームズ
 q1151693,company,日本製鉄,にっぽんせいてつ,Nippon Steel Corporation,,,,Q1151693,22,日本製鉄
@@ -971,7 +955,6 @@ q721710,game,逆転裁判3,,Phoenix Wright: Ace Attorney – Trials and Tribulat
 q75690,movie,劇場版 NARUTO -ナルト- 疾風伝,,Naruto Shippuden the Movie,映画,,,Q75690,22,劇場版 NARUTO -ナルト- 疾風伝
 q773981,game,うたわれるもの,,Utawarerumono,ゲームソフト,,,Q773981,22,うたわれるもの
 q777791,manga,こちら葛飾区亀有公園前派出所,,KochiKame: Tokyo Beat Cops,漫画,,,Q777791,22,こちら葛飾区亀有公園前派出所
-q787183,brand,ヤシカ,,Yashica,,,,Q787183,22,ヤシカ
 q790686,company,エイベックス,,Avex Group,,,,Q790686,22,エイベックス
 q857261,manga,ロザリオとバンパイア,,Rosario + Vampire,漫画,,,Q857261,22,ロザリオとバンパイア
 q865603,manga,シュガシュガルーン,,Sugar Sugar Rune,漫画,,,Q865603,22,シュガシュガルーン
@@ -1139,7 +1122,6 @@ q92560,anime,天空のエスカフローネ,,The Vision of Escaflowne,テレビ�
 q936413,game,ドンキーコングジャングルビート,,Donkey Kong Jungle Beat,ゲームソフト,,,Q936413,21,ドンキーコングジャングルビート
 q94397518,game,ペーパーマリオ オリガミキング,,Paper Mario: The Origami King,ゲームソフト,,,Q94397518,21,ペーパーマリオ オリガミキング
 q947420,game,女神異聞録ペルソナ,,Revelations: Persona,ゲームソフト,,,Q947420,21,女神異聞録ペルソナ
-q950345,character,イーサン・ハント,,Ethan Hunt,,,,Q950345,21,
 q957795,musician,松岡禎丞,まつおか よしつぐ,Yoshitsugu Matsuoka,ソロ,,,Q957795,21,松岡禎丞
 q967074,manga,うしおととら,,Ushio & Tora,漫画,,,Q967074,21,うしおととら
 q971946,company,KDDI,けーでぃーでぃーあい,,,,,Q971946,21,KDDI
@@ -1210,7 +1192,6 @@ q182469,manga,ちはやふる,,Chihayafuru,漫画,,,Q182469,20,ちはやふる
 q1837699,game,ロックマン4 新たなる野望!!,,Mega Man 4,ゲームソフト,,,Q1837699,20,ロックマン4 新たなる野望!!
 q1863895,game,ソニック ラッシュ,,Sonic Rush,ゲームソフト,,,Q1863895,20,ソニック ラッシュ
 q1909600,game,ソウルキャリバーIII,,Soulcalibur III,ゲームソフト,,,Q1909600,20,ソウルキャリバーIII
-q1963952,brand,ナカミチ,,Nakamichi,,,,Q1963952,20,ナカミチ
 q2005910,game,メトロイド アザーエム,,Metroid: Other M,ゲームソフト,,,Q2005910,20,メトロイド アザーエム
 q20128284,game,ゼルダの伝説 トライフォース3銃士,,The Legend of Zelda: Tri Force Heroes,ゲームソフト,,,Q20128284,20,ゼルダの伝説 トライフォース3銃士
 q2067832,game,ソウルキャリバーII,,Soulcalibur II,ゲームソフト,,,Q2067832,20,ソウルキャリバーII
@@ -1348,7 +1329,6 @@ q1157511,company,大日本印刷,だいにっぽんいんさつ,Dai Nippon Print
 q116439515,game,Hi-Fi RUSH,,,ゲームソフト,,,Q116439515,19,Hi-Fi RUSH
 q1166240,movie,仄暗い水の底から,,Dark Water,映画,,,Q1166240,19,
 q1186964,musician,市道真央,,Mao Ichimichi,ソロ,,,Q1186964,19,市道真央
-q1189087,brand,エアージャパン,,Air Japan,,,,Q1189087,19,エアージャパン
 q1191847,movie,SPACE BATTLESHIP ヤマト,,Space Battleship Yamato,映画,,,Q1191847,19,SPACE BATTLESHIP ヤマト
 q1195267,game,メイド イン ワリオ,,"WarioWare, Inc.: Mega Microgames!",ゲームソフト,,,Q1195267,19,メイド イン ワリオ
 q1195476,game,レイトン教授と不思議な町,,Professor Layton and the Curious Village,ゲームソフト,,,Q1195476,19,レイトン教授と不思議な町
@@ -1386,7 +1366,6 @@ q1512540,game,DEMENTO,でめんと,Haunting Ground,ゲームソフト,,,Q1512540
 q1514023,game,グリーンベレー,,,ゲームソフト,,,Q1514023,19,グリーンベレー (コナミ)
 q151512,game,ソニック&テイルス2,,,ゲームソフト,,,Q151512,19,ソニック&テイルス2
 q151531,game,ソニック&テイルス,,Sonic Chaos,ゲームソフト,,,Q151531,19,ソニック&テイルス
-q1536520,brand,TAMAドラム,,Tama Drums,,,,Q1536520,19,TAMA Drums
 q15715520,musician,青葉市子,あおば いちこ,Ichiko Aoba,ソロ,,,Q15715520,19,青葉市子
 q1593184,musician,小松未可子,こまつ みかこ,Mikako Komatsu,ソロ,,,Q1593184,19,小松未可子
 q1602025,musician,HEATH,,,ソロ,,,Q1602025,19,HEATH
@@ -1522,7 +1501,6 @@ q1072868,game,ファイナルファンタジータクティクスアドバンス
 q108670544,game,星のカービィ ディスカバリー,,Kirby and the Forgotten Land,ゲームソフト,,,Q108670544,18,星のカービィ ディスカバリー
 q1087824,manga,花ざかりの君たちへ,,Hana-Kimi,漫画,,,Q1087824,18,花ざかりの君たちへ
 q1093071,musician,前田亜季,まえだ あき,Aki Maeda,ソロ,,,Q1093071,18,前田亜季
-q11020382,character,ケン・マスターズ,,Ken Masters,,,,Q11020382,18,ケン・マスターズ
 q11046402,manga,山田くんと7人の魔女,,Yamada-kun and the Seven Witches,漫画,,,Q11046402,18,山田くんと7人の魔女
 q1112104,game,エースコンバット5 ジ・アンサング・ウォー,,Ace Combat 5: The Unsung War,ゲームソフト,,,Q1112104,18,エースコンバット5 ジ・アンサング・ウォー
 q11143918,manga,この世界の片隅に,,In This Corner of the World,漫画,,,Q11143918,18,この世界の片隅に
@@ -1729,7 +1707,7 @@ q1010190,musician,Buono!,ぼーの,,グループ,,,Q1010190,17,Buono!
 q1027454,company,カルピス,,Calpis,,,,Q1027454,17,カルピス
 q1033328,manga,アオハライド,,Ao Haru Ride,漫画,,,Q1033328,17,アオハライド
 q1041292,game,ベースボール,,Baseball,ゲームソフト,,,Q1041292,17,ベースボール (ファミコン)
-q1051519,character,海王みちる,,Sailor Neptune,,q704353,,Q1051519,17,海王みちる
+q1051519,character,海王みちる,,Sailor Neptune,,q1643098,,Q1051519,17,海王みちる
 q1052908,manga,いちご100%,,Strawberry 100%,漫画,,,Q1052908,17,いちご100%
 q1054887,musician,吉永小百合,よしなが さゆり,Sayuri Yoshinaga,ソロ,,,Q1054887,17,吉永小百合
 q1060178,character,メロ,,Mello,,q1834,,Q1060178,17,メロ (DEATH NOTE)
@@ -2128,7 +2106,6 @@ q2352959,game,牧場物語 コロボックルステーション,,Harvest Moon DS
 q239565,musician,華原朋美,かはら ともみ,Tomomi Kahala,ソロ,,,Q239565,16,華原朋美
 q2422795,game,ストリートファイターZERO2,,Street Fighter Alpha 2,ゲームソフト,,,Q2422795,16,ストリートファイターZERO2
 q2444897,game,ソニック ラッシュ アドベンチャー,,Sonic Rush Adventure,ゲームソフト,,,Q2444897,16,ソニック ラッシュ アドベンチャー
-q2468852,brand,ニコンのレンズ製品一覧,,Nikkor,,,,Q2468852,16,ニコンのレンズ製品一覧
 q2472234,game,グランツーリスモHDコンセプト,,Gran Turismo HD Concept,ゲームソフト,,,Q2472234,16,グランツーリスモHDコンセプト
 q2474856,game,極限脱出 9時間9人9の扉,,"Nine Hours, Nine Persons, Nine Doors",ゲームソフト,,,Q2474856,16,極限脱出 9時間9人9の扉
 q2477539,movie,ポケットモンスター ミュウツー! 我ハココニ在リ,,Pokémon: Mewtwo Returns,映画,,,Q2477539,16,ポケットモンスター ミュウツー! 我ハココニ在リ
@@ -3007,7 +2984,6 @@ q945187,game,女神異聞録デビルサバイバー,,Shin Megami Tensei: Devil 
 q947939,musician,東京事変,とうきょうじへん,Tokyo Jihen,グループ,,,Q947939,14,東京事変
 q963199,anime,シートン動物記 りすのバナー,,Bannertail: The Story of Gray Squirrel,テレビアニメ,,,Q963199,14,シートン動物記 りすのバナー
 q965249,movie,学生ロマンス 若き日,,Days of Youth,映画,,,Q965249,14,学生ロマンス 若き日
-q968181,character,ザンギエフ,,Zangief,,,,Q968181,14,ザンギエフ
 q97193682,manga,魔女と野獣,,The Witch and the Beast,漫画,,,Q97193682,14,魔女と野獣
 q972627,game,メタルスラッグ2,,Metal Slug 2,ゲームソフト,,,Q972627,14,
 q97277551,manga,魔法少女にあこがれて,,Gushing over Magical Girls,漫画,,,Q97277551,14,魔法少女にあこがれて
@@ -3117,7 +3093,7 @@ q1334705,game,メタルスラッグ3,,Metal Slug 3,ゲームソフト,,,Q1334705
 q1336013,musician,私立恵比寿中学,,Shiritsu Ebisu Chugaku,グループ,,,Q1336013,13,私立恵比寿中学
 q1336512,musician,須藤元気,すどう げんき,Genki Sudo,ソロ,,,Q1336512,13,須藤元気
 q133804382,game,ゼルダ無双 封印戦記,,Hyrule Warriors: Age of Imprisonment,ゲームソフト,,,Q133804382,13,ゼルダ無双 封印戦記
-q1340530,character,レベッカ・チェンバース,,Rebecca Chambers,,q116728278,,Q1340530,13,レベッカ・チェンバース
+q1340530,character,レベッカ・チェンバース,,Rebecca Chambers,,,,Q1340530,13,レベッカ・チェンバース
 q1342799,musician,伴都美子,ばん とみこ,Tomiko Van,ソロ,,,Q1342799,13,伴都美子
 q1342988,musician,YUKI,,,ソロ,,,Q1342988,13,YUKI (歌手)
 q1342997,musician,WaT,,,グループ,,,Q1342997,13,WaT
@@ -4087,7 +4063,7 @@ q131292174,anime,アン・シャーリー,,Anne Shirley,テレビアニメ,,,Q13
 q1314509,game,To Heart,,,ゲームソフト,,,Q1314509,11,To Heart
 q1314852,game,決戦,,Kessen,ゲームソフト,,,Q1314852,11,決戦 (コーエー)
 q1315829,movie,ただ、君を愛してる,,"Tada, Kimi o Aishiteru",映画,,,Q1315829,11,ただ、君を愛してる
-q1317441,character,不知火舞,,Mai Shiranui,,q198081,,Q1317441,11,不知火舞
+q1317441,character,不知火舞,,Mai Shiranui,,q3275594,,Q1317441,11,不知火舞
 q1326076,musician,Janne Da Arc,,,グループ,,,Q1326076,11,Janne Da Arc
 q1326385,game,Wiiでやわらかあたま塾,,Big Brain Academy: Wii Degree,ゲームソフト,,,Q1326385,11,Wiiでやわらかあたま塾
 q1329328,musician,Dragon Ash,,,グループ,,,Q1329328,11,Dragon Ash
@@ -4202,7 +4178,7 @@ q2356104,game,コロコロカービィ,,Kirby Tilt 'n' Tumble,ゲームソフト
 q2373746,movie,ガメラ対宇宙怪獣バイラス,,Gamera vs. Viras,映画,,,Q2373746,11,ガメラ対宇宙怪獣バイラス
 q2374347,game,レガイア伝説,,Legend of Legaia,ゲームソフト,,,Q2374347,11,レガイア伝説
 q2398156,game,実況ワールドサッカー。 ワールドカップフランス'98,,International Superstar Soccer 98,ゲームソフト,,,Q2398156,11,
-q2406921,character,ジョナサン・ジョースター,,Jonathan Joestar,,q696918,,Q2406921,11,ジョナサン・ジョースター
+q2406921,character,ジョナサン・ジョースター,,Jonathan Joestar,,q2608646,,Q2406921,11,ジョナサン・ジョースター
 q2407494,anime,トランスフォーマー ザ☆ヘッドマスターズ,,Transformers: The Headmasters,テレビアニメ,,,Q2407494,11,トランスフォーマー ザ☆ヘッドマスターズ
 q24175566,musician,MYTH & ROID,,,グループ,,,Q24175566,11,MYTH & ROID
 q2437033,movie,どうぶつ宝島,,Dōbutsu Takarajima,映画,,,Q2437033,11,どうぶつ宝島
@@ -4244,7 +4220,6 @@ q25929253,anime,NARUTO -ナルト-,,Naruto,テレビアニメ,,,Q25929253,11,NAR
 q2593819,game,ミッキーマウス 不思議の国の大冒険,,Mickey Mousecapade,ゲームソフト,,,Q2593819,11,ミッキーマウス 不思議の国の大冒険
 q2597204,game,魔界戦記ディスガイア2,,Disgaea 2,ゲームソフト,,,Q2597204,11,魔界戦記ディスガイア2
 q259804,game,攻殻機動隊 GHOST IN THE SHELL,,Ghost in the Shell,ゲームソフト,,,Q259804,11,攻殻機動隊 GHOST IN THE SHELL
-q2601118,character,バットマン,,Terry McGinnis,,,,Q2601118,11,
 q2603402,anime,超電磁ロボ コン・バトラーV,,Chōdenji Robo Combattler V,テレビアニメ,,,Q2603402,11,超電磁ロボ コン・バトラーV
 q2604090,game,ファイナルファンタジーIV THE AFTER 月の帰還,,Final Fantasy IV: The After Years,ゲームソフト,,,Q2604090,11,ファイナルファンタジーIV THE AFTER 月の帰還
 q2604921,game,バハムートラグーン,,Bahamut Lagoon,ゲームソフト,,,Q2604921,11,バハムートラグーン
@@ -4820,7 +4795,6 @@ q2710857,game,サターンボンバーマン,,Saturn Bomberman,ゲームソフ�
 q2711870,game,ZONE OF THE ENDERS Z.O.E,,Zone of the Enders,ゲームソフト,,,Q2711870,10,ZONE OF THE ENDERS Z.O.E
 q2712856,game,ロックマンゼロ2,,Mega Man Zero 2,ゲームソフト,,,Q2712856,10,ロックマンゼロ2
 q2713553,manga,爆れつハンター,,Sorcerer Hunters,漫画,,,Q2713553,10,爆れつハンター
-q2714423,character,風間飛鳥,,Asuka Kazama,,q338486,,Q2714423,10,風間飛鳥
 q2716336,musician,THE MAD CAPSULE MARKETS,,,グループ,,,Q2716336,10,THE MAD CAPSULE MARKETS
 q2719287,manga,ZOMBIEPOWDER.,,,漫画,,,Q2719287,10,ZOMBIEPOWDER.
 q2732145,game,罪と罰 〜宇宙の後継者〜,,Sin & Punishment: Star Successor,ゲームソフト,,,Q2732145,10,罪と罰 〜宇宙の後継者〜
@@ -4873,7 +4847,6 @@ q30607545,game,New みんなのGOLF,,Everybody's Golf,ゲームソフト,,,Q3060
 q3066841,company,ジャノメ,,Janome,,,,Q3066841,10,ジャノメ
 q3072796,game,ファイアーエムブレム 聖戦の系譜,,Fire Emblem: Genealogy of the Holy War,ゲームソフト,,,Q3072796,10,ファイアーエムブレム 聖戦の系譜
 q3073061,game,北斗の拳 (ファミリーコンピュータ),,Fist of the North Star,ゲームソフト,,,Q3073061,10,北斗の拳 (ファミリーコンピュータ)
-q3077400,brand,ラックスマン,,Luxman,,,,Q3077400,10,ラックスマン
 q3079325,company,伊藤園,いとうえん,Ito En,,,,Q3079325,10,伊藤園
 q3082948,movie,K-20 怪人二十面相・伝,,K-20: Legend of the Mask,映画,,,Q3082948,10,K-20 怪人二十面相・伝
 q3084347,game,ロックマンX2 ソウルイレイザー,,Mega Man Xtreme 2,ゲームソフト,,,Q3084347,10,ロックマンX2 ソウルイレイザー
@@ -5170,7 +5143,6 @@ q113213531,manga,この世界は不完全すぎる,,Quality Assurance in Another
 q11326305,manga,ハクメイとミコチ,,Hakumei and Mikochi,漫画,,,Q11326305,9,ハクメイとミコチ
 q11341587,company,マンダム,,Mandom,,,,Q11341587,9,マンダム
 q11341919,manga,ミクロイドS,,Microid S,漫画,,,Q11341919,9,ミクロイドS
-q1134504,brand,MOONSTONE,むーんすとーん,,,,,Q1134504,9,MOONSTONE
 q11348976,movie,ルドルフとイッパイアッテナ,,Rudolf and Ippaiattena,映画,,,Q11348976,9,ルドルフとイッパイアッテナ
 q113507864,manga,黒猫と魔女の教室,,The Classroom of a Black Cat and a Witch,漫画,,,Q113507864,9,黒猫と魔女の教室
 q1135758,musician,東京女子流,,Tokyo Girls' Style,グループ,,,Q1135758,9,東京女子流
@@ -5439,7 +5411,7 @@ q24868434,movie,劇場版 黒子のバスケ LAST GAME,,Kuroko's Basketball The 
 q24868877,manga,もののがたり,,Malevolent Spirits,漫画,,,Q24868877,9,もののがたり
 q2498318,company,コスモ石油,,Cosmo Oil Company,,,,Q2498318,9,コスモ石油
 q2500264,manga,EAT-MAN,,,漫画,,,Q2500264,9,EAT-MAN
-q2503497,character,桐生一馬,,Kazuma Kiryu,,q116980062,,Q2503497,9,桐生一馬
+q2503497,character,桐生一馬,,Kazuma Kiryu,,q684160,,Q2503497,9,桐生一馬
 q2504585,manga,ユニコ,,Unico,漫画,,,Q2504585,9,ユニコ
 q2511557,manga,ふたつのスピカ,,Twin Spica,漫画,,,Q2511557,9,ふたつのスピカ
 q2513509,game,プロレス,,Pro Wrestling,ゲームソフト,,,Q2513509,9,プロレス (任天堂)
@@ -5849,10 +5821,8 @@ q1033127,manga,ホワッツマイケル,,What's Michael?,漫画,,,Q1033127,8,ホ
 q1037597,musician,相対性理論,,Sōtaisei Riron,グループ,,,Q1037597,8,相対性理論 (バンド)
 q1038543,musician,School Food Punishment,,,グループ,,,Q1038543,8,School Food Punishment
 q1038622,game,英雄伝説V 海の檻歌,,,ゲームソフト,,,Q1038622,8,英雄伝説V 海の檻歌
-q1040761,brand,Key Sounds Label,,,,,,Q1040761,8,Key Sounds Label
 q104211858,anime,チェンソーマン,,Chainsaw Man,テレビアニメ,,,Q104211858,8,チェンソーマン (アニメ)
 q1044039,character,ギース・ハワード,,Geese Howard,,q198092,,Q1044039,8,ギース・ハワード
-q1045037,brand,アリスソフト,,AliceSoft,,,,Q1045037,8,アリスソフト
 q104679780,manga,少年のアビス,,Boy's Abyss,漫画,,,Q104679780,8,少年のアビス
 q1048739,movie,ONE PIECE THE MOVIE カラクリ城のメカ巨兵,,One Piece: The Giant Mechanical Soldier of Karakuri Castle,映画,,,Q1048739,8,ONE PIECE THE MOVIE カラクリ城のメカ巨兵
 q1050071,game,東方萃夢想 〜 Immaterial and Missing Power.,,Touhou Suimusou ~ Immaterial and Missing Power,ゲームソフト,,,Q1050071,8,東方萃夢想 〜 Immaterial and Missing Power.
@@ -6228,7 +6198,6 @@ q2408440,musician,東京パフォーマンスドール,,Tokyo Performance Doll,�
 q2413658,game,提督の決断,,P.T.O.,ゲームソフト,,,Q2413658,8,提督の決断
 q2423884,movie,黒蜥蜴,,Black Lizard,映画,,,Q2423884,8,黒蜥蜴
 q2428163,movie,宇宙快速船,,Invasion of the Neptune Men,映画,,,Q2428163,8,宇宙快速船
-q2441117,character,天馬星座の星矢,,Pegasus Seiya,,q275956,,Q2441117,8,天馬星座の星矢
 q2442006,game,イリスのアトリエ エターナルマナ2,,Atelier Iris 2: The Azoth of Destiny,ゲームソフト,,,Q2442006,8,イリスのアトリエ エターナルマナ2
 q2442249,game,イリスのアトリエ エターナルマナ,,Atelier Iris: Eternal Mana,ゲームソフト,,,Q2442249,8,イリスのアトリエ エターナルマナ
 q2448514,game,ラングリッサーIII,,Langrisser III,ゲームソフト,,,Q2448514,8,ラングリッサーIII
@@ -6269,7 +6238,6 @@ q2539388,game,デジモンバトルクロニクル,,Digimon Rumble Arena 2,ゲ�
 q2539476,anime,ゾイド,,Zoids,テレビアニメ,,,Q2539476,8,ゾイド
 q2539750,manga,DOGS/BULLETS&CARNAGE,,Dogs,漫画,,,Q2539750,8,DOGS/BULLETS&CARNAGE
 q2539777,game,化石超進化 スペクトロブス,,Spectrobes,ゲームソフト,,,Q2539777,8,化石超進化 スペクトロブス
-q2540796,character,バリー・バートン,,Barry Burton,,q1248594,,Q2540796,8,バリー・バートン
 q2544102,manga,姫ちゃんのリボン,,Hime-chan's Ribbon,漫画,,,Q2544102,8,姫ちゃんのリボン
 q2544703,movie,予言,,Premonition,映画,,,Q2544703,8,
 q25518,movie,カリスマ,,Charisma,映画,,,Q25518,8,カリスマ (映画)
@@ -6752,7 +6720,7 @@ q102283726,anime,イナズマイレブン,,Inazuma Eleven,テレビアニメ,,,Q
 q1037014,anime,宇宙交響詩メーテル 銀河鉄道999外伝,,Space Symphony Maetel,テレビアニメ,,,Q1037014,7,宇宙交響詩メーテル 銀河鉄道999外伝
 q1045285,manga,ちょこッとSister,ちょこっとしすたー,Chocotto Sister,漫画,,,Q1045285,7,ちょこッとSister
 q1049862,manga,好きです鈴木くん!!,,Suki Desu Suzuki-kun!!,漫画,,,Q1049862,7,好きです鈴木くん!!
-q105153137,character,夏油傑,,Suguru Getō,,q98836216,,Q105153137,7,夏油傑
+q105153137,character,夏油傑,,Suguru Getō,,,,Q105153137,7,夏油傑
 q1051871,anime,出撃!マシンロボレスキュー,,Machine Robo Rescue,テレビアニメ,,,Q1051871,7,出撃!マシンロボレスキュー
 q106093831,manga,君と綴るうたかた,,The Summer You Were There,漫画,,,Q106093831,7,君と綴るうたかた
 q106568090,anime,かぎなど,,Kaginado,テレビアニメ,,,Q106568090,7,かぎなど
@@ -6789,7 +6757,7 @@ q1131733,manga,東京大学物語,,Tokyo Daigaku Monogatari,漫画,,,Q1131733,7,
 q1133370,anime,魔法のアイドルパステルユーミ,,"Pastel Yumi, the Magic Idol",テレビアニメ,,,Q1133370,7,魔法のアイドルパステルユーミ
 q1133598,anime,UFO戦士ダイアポロン,,UFO Warrior Dai Apolon,テレビアニメ,,,Q1133598,7,UFO戦士ダイアポロン
 q11338596,manga,ボクラノキセキ,,Our Miracle,漫画,,,Q11338596,7,ボクラノキセキ
-q1134585,character,野原ひろし,のはら ひろし,Hiroshi Nohara,,q120300,,Q1134585,7,野原ひろし
+q1134585,character,野原ひろし,のはら ひろし,Hiroshi Nohara,,,,Q1134585,7,野原ひろし
 q113493155,manga,エクソシストを堕とせない,,Make the Exorcist Fall in Love,漫画,,,Q113493155,7,エクソシストを堕とせない
 q1135110,manga,せんせいのお時間,,Doki Doki School Hours,漫画,,,Q1135110,7,せんせいのお時間
 q1137822,company,ガーラ,,Gala,,,,Q1137822,7,ガーラ (企業)
@@ -6797,7 +6765,6 @@ q113860060,manga,でこぼこ魔女の親子事情,,The Family Circumstances of 
 q1139009,manga,闇金ウシジマくん,,Ushijima the Loan Shark,漫画,,,Q1139009,7,闇金ウシジマくん
 q1141572,manga,ミラクル☆ガールズ,,Miracle Girls,漫画,,,Q1141572,7,ミラクル☆ガールズ
 q11435639,company,SCREENホールディングス,,SCREEN Holdings,,,,Q11435639,7,SCREENホールディングス
-q1143795,brand,オーガスト,,August,,,,Q1143795,7,オーガスト (ブランド)
 q11441729,company,日本酸素ホールディングス,,Taiyo Nippon Sanso,,,,Q11441729,7,日本酸素ホールディングス
 q114888419,anime,REVENGER,,,テレビアニメ,,,Q114888419,7,REVENGER
 q1151986,character,妃英理,,Eri Kisaki,,,,Q1151986,7,妃英理
@@ -7035,7 +7002,6 @@ q869265,manga,ギャグマンガ日和,,Gag Manga Biyori,漫画,,,Q869265,7,ギ�
 q888252,manga,黒鷺死体宅配便,,The Kurosagi Corpse Delivery Service,漫画,,,Q888252,7,黒鷺死体宅配便
 q897412,anime,ブレンパワード,,Brain Powerd,テレビアニメ,,,Q897412,7,ブレンパワード
 q898667,manga,ギャラリーフェイク,,Gallery Fake,漫画,,,Q898667,7,ギャラリーフェイク
-q907871,brand,Leaf,りーふ,,,,,Q907871,7,Leaf
 q909422,anime,魔法のエンジェルスイートミント,,Magical Angel Sweet Mint,テレビアニメ,,,Q909422,7,魔法のエンジェルスイートミント
 q920370,anime,OVERMANキングゲイナー,,Overman King Gainer,テレビアニメ,,,Q920370,7,OVERMANキングゲイナー
 q922494,manga,のーぶら,,No Bra,漫画,,,Q922494,7,のーぶら
@@ -7273,7 +7239,7 @@ q30932743,manga,鹿楓堂よついろ日和,,Rokuhōdō Yotsuiro Biyori,漫画,,
 q30934253,manga,食糧人類-Starving Anonymous-,,Starving Anonymous,漫画,,,Q30934253,6,食糧人類-Starving Anonymous-
 q3116373,anime,GREGORY HORROR SHOW,,,テレビアニメ,,,Q3116373,6,GREGORY HORROR SHOW
 q3135322,manga,彼岸島,,Higanjima,漫画,,,Q3135322,6,彼岸島
-q3181527,character,キング,,King,,q198081,,Q3181527,6,キング (龍虎の拳)
+q3181527,character,キング,,King,,q1071378,,Q3181527,6,キング (龍虎の拳)
 q3203779,manga,無能の人,,Munō no Hito,漫画,,,Q3203779,6,無能の人
 q3273878,anime,獣装機攻ダンクーガノヴァ,,Dancouga Nova – Super God Beast Armor,テレビアニメ,,,Q3273878,6,獣装機攻ダンクーガノヴァ
 q3274352,manga,ポヨポヨ観察日記,,Poyopoyo Kansatsu Nikki,漫画,,,Q3274352,6,ポヨポヨ観察日記
@@ -7377,7 +7343,6 @@ q736163,manga,BLUE DROP,,,漫画,,,Q736163,6,BLUE DROP
 q7496805,anime,しましまとらのしまじろう,,Shima Shima Tora no Shimajirō,テレビアニメ,,,Q7496805,6,しましまとらのしまじろう
 q75320,manga,断裁分離のクライムエッジ,,The Severing Crime Edge,漫画,,,Q75320,6,断裁分離のクライムエッジ
 q7642153,manga,爆球連発!!スーパービーダマン,,Burst Ball Barrage!! Super B-Daman,漫画,,,Q7642153,6,爆球連発!!スーパービーダマン
-q775716,brand,Angelic Pretty,,,,,,Q775716,6,
 q776403,manga,ファイブスター物語,,The Five Star Stories,漫画,,,Q776403,6,ファイブスター物語
 q779861,manga,イナズマイレブンGO,,Inazuma Eleven GO,漫画,,,Q779861,6,
 q7830633,company,東洋水産,とうようすいさん,Toyo Suisan,,,,Q7830633,6,東洋水産
@@ -7415,7 +7380,7 @@ q102248789,manga,みなと商事コインランドリー,,Minato's Laundromat,�
 q10370095,manga,戦星のバルジ,,Barrage,漫画,,,Q10370095,5,戦星のバルジ
 q1037662,anime,太陽の勇者ファイバード,,The Brave Fighter of Sun Fighbird,テレビアニメ,,,Q1037662,5,太陽の勇者ファイバード
 q1038355,manga,亡き少女の為のパヴァーヌ,,Pavane for a Dead Girl,漫画,,,Q1038355,5,亡き少女の為のパヴァーヌ
-q1045438,character,ビリー・カーン,,Billy Kane,,q1152450,,Q1045438,5,ビリー・カーン
+q1045438,character,ビリー・カーン,,Billy Kane,,q198092,,Q1045438,5,ビリー・カーン
 q1045857,anime,巷説百物語,,Requiem from the Darkness,テレビアニメ,,,Q1045857,5,巷説百物語
 q1052588,anime,勇者指令ダグオン,,Brave Command Dagwon,テレビアニメ,,,Q1052588,5,勇者指令ダグオン
 q1054986,manga,ななこSOS,,Nanako SOS,漫画,,,Q1054986,5,ななこSOS
@@ -7634,7 +7599,7 @@ q30924975,manga,八十亀ちゃんかんさつにっき,,Yatogame-chan Kansatsu 
 q30925331,manga,ハレ婚。,はれこん,Hare-Kon.,漫画,,,Q30925331,5,ハレ婚。
 q30929396,manga,死役所,,Shiyakusho,漫画,,,Q30929396,5,死役所
 q3101028,manga,ジオブリーダーズ,,Geobreeders,漫画,,,Q3101028,5,ジオブリーダーズ
-q3110625,character,ジョー・ヒガシ,,Joe Higashi,,q104758868,,Q3110625,5,ジョー・ヒガシ
+q3110625,character,ジョー・ヒガシ,,Joe Higashi,,q124984952,,Q3110625,5,ジョー・ヒガシ
 q3113311,anime,あしたへフリーキック,,Free Kick Toward Tomorrow,テレビアニメ,,,Q3113311,5,あしたへフリーキック
 q3129809,manga,BATMAN CHILD OF DREAMS,,Batman: Child of Dreams,漫画,,,Q3129809,5,BATMAN CHILD OF DREAMS
 q3207458,manga,土星マンション,,Saturn Apartments,漫画,,,Q3207458,5,土星マンション
@@ -7780,7 +7745,6 @@ q843115,anime,メイプルストーリー,,MapleStory,テレビアニメ,,,Q8431
 q845026,manga,フラワー・オブ・ライフ,,Flower of Life,漫画,,,Q845026,5,フラワー・オブ・ライフ
 q845452,anime,Project BLUE 地球SOS,,Project Blue Earth SOS,テレビアニメ,,,Q845452,5,Project BLUE 地球SOS
 q860435,manga,うちの3姉妹,,Uchi no Sanshimai,漫画,,,Q860435,5,うちの3姉妹
-q864366,brand,Lump of Sugar,,,,,,Q864366,5,Lump of Sugar
 q865699,manga,浦安鉄筋家族,,Super Radical Gag Family,漫画,,,Q865699,5,浦安鉄筋家族
 q866065,manga,ママはぽよぽよザウルスがお好き,,Mama Loves the Poyopoyo-Saurus,漫画,,,Q866065,5,ママはぽよぽよザウルスがお好き
 q866151,manga,夢使い,,Yume Tsukai,漫画,,,Q866151,5,夢使い
@@ -7884,7 +7848,6 @@ q11272376,anime,ドラゴンリーグ,,Dragon League,テレビアニメ,,,Q11272
 q11277522,manga,ぷちます! -PETIT IDOLM@STER-,,Puchimas! Petit Idolmaster,漫画,,,Q11277522,4,ぷちます! -PETIT IDOLM@STER-
 q11278263,manga,まじもじるるも,,Magimoji Rurumo,漫画,,,Q11278263,4,まじもじるるも
 q11281548,anime,るろうに剣心 -明治剣客浪漫譚-,,Rurouni Kenshin,テレビアニメ,,,Q11281548,4,るろうに剣心 -明治剣客浪漫譚- (アニメ)
-q11284027,brand,アトレ,,Atre,,,,Q11284027,4,アトレ
 q11285552,manga,アーケードゲーマーふぶき,,Arcade Gamer Fubuki,漫画,,,Q11285552,4,アーケードゲーマーふぶき
 q11286802,manga,イッパツ危機娘,,Ippatsu Kiki Musume,漫画,,,Q11286802,4,イッパツ危機娘
 q11288522,company,ウェッズ,,Weds,,,,Q11288522,4,ウェッズ
@@ -8000,7 +7963,6 @@ q15690943,manga,リバースエッジ 大川端探偵社,,Reverse Edge: Ōkawaba
 q15846391,anime,中二病でも恋がしたい！,,"Love, Chunibyo & Other Delusions",テレビアニメ,,,Q15846391,4,中二病でも恋がしたい! (アニメ)
 q15863567,anime,けいおん!,,K-On!,テレビアニメ,,,Q15863567,4,
 q15963927,anime,M3〜ソノ黒キ鋼〜,,M3: The Dark Metal,テレビアニメ,,,Q15963927,4,M3〜ソノ黒キ鋼〜
-q1682351,brand,ムジーク・ヨーゼフ,,Musik Josef,,,,Q1682351,4,ムジーク・ヨーゼフ
 q16962668,anime,パラッパラッパー,,PaRappa the Rapper,テレビアニメ,,,Q16962668,4,
 q17193152,manga,磯部磯兵衛物語〜浮世はつらいよ〜,,Isobe Isobē Monogatari,漫画,,,Q17193152,4,磯部磯兵衛物語〜浮世はつらいよ〜
 q17212088,anime,LINE TOWN,,,テレビアニメ,,,Q17212088,4,LINE TOWN
@@ -8158,11 +8120,9 @@ q5299425,anime,ドテラマン,,Doteraman,テレビアニメ,,,Q5299425,4,ドテ
 q5307482,manga,漂流ネットカフェ,,Drifting Net Cafe,漫画,,,Q5307482,4,漂流ネットカフェ
 q5320935,anime,昆虫物語 新みなしごハッチ,,New Honeybee Hutch,テレビアニメ,,,Q5320935,4,
 q5349248,manga,エイケン,,Eiken,漫画,,,Q5349248,4,エイケン (漫画)
-q5357296,brand,ゆずソフト,,Yuzusoft,,,,Q5357296,4,ゆずソフト
 q5363626,anime,ライブオン CARDLIVER 翔,,Live On Cardliver Kakeru,テレビアニメ,,,Q5363626,4,ライブオン CARDLIVER 翔
 q5363944,manga,町でうわさの天狗の子,,Machi de Uwasa no Tengu no Ko,漫画,,,Q5363944,4,町でうわさの天狗の子
 q5364055,manga,俺はまだ本気出してないだけ,,I'll Give It My All... Tomorrow,漫画,,,Q5364055,4,俺はまだ本気出してないだけ
-q5365456,brand,CUFFS,,,,,,Q5365456,4,CUFFS
 q5368766,anime,ミラクル☆トレイン,,Miracle Train: Ōedo-sen e Yōkoso,テレビアニメ,,,Q5368766,4,ミラクル☆トレイン
 q5451246,manga,ファイヤー!,,Fire!,漫画,,,Q5451246,4,ファイヤー!
 q549235,manga,ラグナロックシティ,,Ragnarock City,漫画,,,Q549235,4,ラグナロックシティ
@@ -8222,7 +8182,6 @@ q702488,anime,砂沙美☆魔法少女クラブ,,Sasami: Magical Girls Club,テ�
 q703679,manga,オリンポスのポロン,,Little Pollon,漫画,,,Q703679,4,
 q7037521,manga,れすきゅーME!,,Rescue Me!,漫画,,,Q7037521,4,れすきゅーME!
 q712730,anime,魔法少女プリティサミー,,Magical Project S,テレビアニメ,,,Q712730,4,
-q7259502,brand,PULLTOP,,,,,,Q7259502,4,PULLTOP
 q737335,manga,リトル・バタフライ,,Little Butterfly,漫画,,,Q737335,4,
 q7389511,anime,SDガンダム三国伝 BraveBattleWarriors,,SD Gundam Sangokuden Brave Battle Warriors,テレビアニメ,,,Q7389511,4,SDガンダム三国伝 BraveBattleWarriors
 q7572457,anime,宇宙海賊ミトの大冒険,,Space Pirate Mito,テレビアニメ,,,Q7572457,4,宇宙海賊ミトの大冒険
@@ -8240,7 +8199,6 @@ q82685235,anime,トミカ絆合体 アースグランナー,,Tomica Bond Combina
 q841016,anime,落語天女おゆい,,Rakugo Tennyo Oyui,テレビアニメ,,,Q841016,4,落語天女おゆい
 q845003,manga,お兄ちゃんと一緒,,Me & My Brothers,漫画,,,Q845003,4,お兄ちゃんと一緒
 q85793912,manga,映画大好きポンポさん,,Pompo: The Cinéphile,漫画,,,Q85793912,4,映画大好きポンポさん
-q861358,brand,TENGA,,,,,,Q861358,4,TENGA
 q863399,brand,大江戸温泉物語,,Ooedo Onsen Monogatari,,,,Q863399,4,大江戸温泉物語
 q869307,manga,私はシャドウ,,Watashi wa Shadow,漫画,,,Q869307,4,私はシャドウ
 q869393,anime,ラストエグザイル-銀翼のファム-,,"Last Exile: Fam, the Silver Wing",テレビアニメ,,,Q869393,4,ラストエグザイル-銀翼のファム-
