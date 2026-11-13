@@ -245,3 +245,12 @@ table.facts th { color: var(--muted); font-weight: 500; white-space: nowrap; }
 .spot-tag { display: inline-block; margin-right: 6px; padding: 0 6px; border: 1px solid rgba(226, 200, 140, 0.5); border-radius: 2px; color: var(--gold-light); font-size: 0.68rem; letter-spacing: 0.04em; }
 .spotlight-grid li:first-child .spot-card, .spotlight-grid li:nth-child(2) .spot-card { border-color: rgba(226, 200, 140, 0.6); }
 @media (max-width: 640px) { .spotlight { padding: 22px 12px 14px; } .spotlight-grid { grid-template-columns: 1fr; } .spot-nth b { font-size: 1.9rem; } .spot-card { gap: 10px; padding: 12px; } .spot-nth { min-width: 3.4em; } }
+
+/* まとめ記事：月別インデックスと前後リンク */
+.month-index { margin: 18px 0 22px; }
+.month-index h2 { font-size: 1rem; margin: 0 0 8px; }
+.month-index ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+.month-index a { display: block; text-align: center; padding: 8px 0; border: 1px solid var(--gold); border-radius: var(--radius); background: var(--card); font-family: var(--serif-ja); }
+.month-index a:hover { background: #15100a; color: #f3e3b6; text-decoration: none; }
+.month-pager { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin: 24px 0 8px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 0.9rem; }
+@media (max-width: 600px) { .month-index ul { grid-template-columns: repeat(4, 1fr); } }

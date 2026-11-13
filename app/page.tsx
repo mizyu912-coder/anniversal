@@ -6,7 +6,7 @@ import HeroSearch from "@/components/HeroSearch";
 import Logo from "@/components/Logo";
 import { getEntities } from "@/lib/data";
 import { anniversariesInYear, sortByPop } from "@/lib/anniv";
-import { BUILD_YEAR, yearRange } from "@/lib/site";
+import { BUILD_YEAR, FEATURE_YEARS, yearRange } from "@/lib/site";
 import { featureTitle, featureTypes } from "@/lib/feature";
 import { ENTITY_TYPES } from "@/lib/types";
 
@@ -30,6 +30,13 @@ export default function Home() {
   }
   big.sort((a, b) => b.n - a.n);
   const counts = Object.keys(ENTITY_TYPES).length;
+  // 今月から3か月分の月別まとめ（まとめ記事がある年の範囲内）
+  const now = new Date();
+  const upcoming: [number, number][] = [];
+  for (let i = 0; i < 3; i++) {
+    const d = new Date(now.getFullYear(), now.getMonth() + i, 1);
+    if (FEATURE_YEARS.includes(d.getFullYear())) upcoming.push([d.getFullYear(), d.getMonth() + 1]);
+  }
   return (
     <>
       <section className="hero full">
@@ -80,6 +87,33 @@ export default function Home() {
 
       <section className="section">
         <TodayList />
+      </section>
+
+      <section className="section">
+        <div className="section-head">
+          <p className="eyebrow">MONTHLY</p>
+          <h2>月別の周年まとめ</h2>
+        </div>
+        <ul className="feature-grid">
+          {upcoming.map(([y, m]) => (
+            <li key={`${y}-${m}`}>
+              <Link href={`/matome/${y}/${m}/`}>
+                <span className="feature-type">
+                  {y}年{m}月
+                </span>
+                <span>
+                  {m}月に周年を迎える作品・ブランド・企業
+                </span>
+              </Link>
+            </li>
+          ))}
+          <li>
+            <Link href={`/matome/${next}/`}>
+              <span className="feature-type">{next}年</span>
+              <span>{next}年に周年を迎える作品・ブランド・企業まとめ</span>
+            </Link>
+          </li>
+        </ul>
       </section>
 
       <section className="section">

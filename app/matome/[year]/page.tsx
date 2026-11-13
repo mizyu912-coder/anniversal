@@ -57,6 +57,17 @@ export default async function MatomePage({ params }: Props) {
         を迎えるなど、節目の年を迎える作品やブランドがそろっています。ここでは10周年以上の大きな節目をジャンル別に紹介します。
       </p>
 
+      <nav className="month-index" aria-label="月別のまとめ">
+        <h2>月別のまとめ</h2>
+        <ul>
+          {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
+            <li key={m}>
+              <Link href={`/matome/${year}/${m}/`}>{m}月</Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
       {big.length > 0 && (
         <section className="card">
           <h2>50周年以上の大きな節目</h2>
