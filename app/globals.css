@@ -207,3 +207,9 @@ table.facts th { color: var(--muted); font-weight: 500; white-space: nowrap; }
 .intro p { margin: 0; line-height: 1.95; }
 .intro .credit { margin-top: 10px; font-size: 0.76rem; color: var(--muted); }
 .intro .credit a { color: var(--muted); text-decoration: underline; }
+.intro.has-image { display: grid; grid-template-columns: 110px 1fr; gap: 16px; align-items: start; }
+.intro .product { margin: 0; text-align: center; }
+.intro .product img { width: 100%; height: auto; border-radius: 4px; box-shadow: 0 6px 18px rgba(0, 0, 0, .15); background: #fff; }
+.intro .product figcaption { font-size: 0.72rem; margin-top: 6px; }
+.intro h2 { margin-top: 0; }
+@media (min-width: 760px) { .intro.has-image { grid-template-columns: 160px 1fr; gap: 24px; } }

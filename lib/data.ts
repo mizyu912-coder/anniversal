@@ -60,6 +60,7 @@ export function getEntities(): Entity[] {
         // links 列（サイトリンク数）がなければ、リンク数順に並んだ行の位置から推定
         pop: file === "entities.csv" ? MANUAL_POP : r.links ? +r.links : Math.max(2, Math.round(60 * (1 - i / rows.length))),
         summary: null,
+        product: null,
         bases: [],
       });
     });
@@ -83,6 +84,10 @@ export function getEntities(): Entity[] {
   for (const r of readCsv("import/summaries.csv")) {
     const e = entities.get(r.id);
     if (e && r.summary) e.summary = { title: r.title, text: r.summary };
+  }
+  for (const r of readCsv("import/rakuten.csv")) {
+    const e = entities.get(r.id);
+    if (e && r.image && r.url) e.product = { image: r.image, url: r.url, title: r.title };
   }
   cache = [...entities.values()];
   return cache;

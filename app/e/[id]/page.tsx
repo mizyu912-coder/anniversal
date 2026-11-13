@@ -85,21 +85,50 @@ export default async function EntityPage({ params }: Props) {
           <Countdown key={b.kind} year={b.year!} month={b.month} day={b.day} label={BASE_KINDS[b.kind]} />
         ))}
 
-      {e.summary && (
-        <section className="card intro">
-          <h2>{e.type === "company" ? "企業紹介" : e.type === "musician" ? "プロフィール" : "作品紹介"}</h2>
-          <p>{e.summary.text}</p>
-          <p className="credit">
-            出典：
-            <a href={`https://ja.wikipedia.org/wiki/${encodeURIComponent(e.summary.title)}`} target="_blank" rel="noopener">
-              Wikipedia「{e.summary.title}」
-            </a>
-            （
-            <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja" target="_blank" rel="noopener license">
-              CC BY-SA 4.0
-            </a>
-            ）
-          </p>
+      {(e.summary || e.product) && (
+        <section className={`card intro${e.product ? " has-image" : ""}`}>
+          {e.product && (
+            <figure className="product">
+              <a href={e.product.url} target="_blank" rel="sponsored noopener">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={e.product.image} alt={e.product.title} loading="lazy" />
+              </a>
+              <figcaption>
+                <a href={e.product.url} target="_blank" rel="sponsored noopener">
+                  楽天ブックスで見る
+                </a>
+              </figcaption>
+            </figure>
+          )}
+          <div className="intro-body">
+            <h2>{e.type === "company" ? "企業紹介" : e.type === "musician" ? "プロフィール" : "作品紹介"}</h2>
+            {e.summary ? (
+              <>
+                <p>{e.summary.text}</p>
+                <p className="credit">
+                  出典：
+                  <a href={`https://ja.wikipedia.org/wiki/${encodeURIComponent(e.summary.title)}`} target="_blank" rel="noopener">
+                    Wikipedia「{e.summary.title}」
+                  </a>
+                  （
+                  <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja" target="_blank" rel="noopener license">
+                    CC BY-SA 4.0
+                  </a>
+                  ）
+                </p>
+              </>
+            ) : (
+              <p>{e.product!.title}</p>
+            )}
+            {e.product && (
+              <p className="credit">
+                画像・商品情報：
+                <a href="https://webservice.rakuten.co.jp/" target="_blank" rel="noopener">
+                  Supported by Rakuten Developers
+                </a>
+              </p>
+            )}
+          </div>
         </section>
       )}
 
