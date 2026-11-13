@@ -9,6 +9,7 @@ on:
     paths:
       - scripts/import-wikidata.mjs
       - scripts/import-summaries.mjs
+      - scripts/import-rakuten.mjs
       - .github/workflows/import.yml
 
 permissions:
@@ -29,6 +30,11 @@ jobs:
       - run: npm ci
       - run: node scripts/import-wikidata.mjs
       - run: node scripts/import-summaries.mjs
+      - run: node scripts/import-rakuten.mjs
+        env:
+          RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+          RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+          RAKUTEN_AFF_ID: ${{ vars.RAKUTEN_AFF_ID }}
       - run: npm run check:data
       - uses: actions/upload-artifact@v4
         with:

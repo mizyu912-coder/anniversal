@@ -55,6 +55,8 @@ export interface Entity {
   pop: number;
   /** Wikipedia冒頭の概要（CC BY-SA 4.0、出典表示が必要） */
   summary: { title: string; text: string } | null;
+  /** 楽天ブックスの商品画像とリンク */
+  product: { image: string; url: string; title: string } | null;
   bases: Base[];
 }
 
