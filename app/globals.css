@@ -56,9 +56,10 @@ h2 { font-size: 1.15rem; margin: 0 0 12px; }
 .hero-brand { text-align: center; }
 .hero-title { font-size: 1.3rem; line-height: 1.5; margin: 22px 0 4px; color: #fffaf0; text-align: center; letter-spacing: 0.08em; text-shadow: 0 2px 14px rgba(0,0,0,.6); }
 .hero-lead span { display: block; }
-.lead-genres { font-size: 0.7rem; letter-spacing: -0.02em; white-space: nowrap; opacity: .9; }
+.lead-genres { font-size: 0.7rem; letter-spacing: -0.02em; opacity: .9; text-wrap: balance; }
 .hero-lead { color: #fde9d6; font-size: 0.86rem; margin: 8px 0 22px; text-align: center; text-shadow: 0 1px 8px rgba(0,0,0,.7); }
-.hero-panels { display: grid; gap: 12px; }
+.hero-panels { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.hero-panel { min-width: 0; }
 .hero-panel {
   position: relative; color: #fff8ec; padding: 20px 18px 18px; border-radius: 4px;
   background: linear-gradient(180deg, rgba(28, 6, 9, .82), rgba(14, 3, 5, .86));
@@ -147,7 +148,7 @@ h2 { font-size: 1.15rem; margin: 0 0 12px; }
 .filters label { font-size: 0.88rem; }
 
 .anniv-list, .result-list, .chips { list-style: none; padding: 0; margin: 0; }
-.anniv-list li { display: grid; grid-template-columns: 4.2em 5.2em 1fr; gap: 8px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.anniv-list li { display: grid; grid-template-columns: 4.2em 5.2em minmax(0, 1fr); gap: 8px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--line); }
 .anniv-list .date { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 0.86rem; }
 .anniv-list .name a { font-family: var(--serif-ja); font-weight: 500; }
 .anniv-list small { display: block; color: var(--muted); font-size: 0.8rem; }
@@ -186,12 +187,12 @@ table.facts th { color: var(--muted); font-weight: 500; white-space: nowrap; }
   .hero-title { font-size: 1.9rem; margin-top: 26px; }
   .lead-genres { font-size: 1em; letter-spacing: 0; }
   .hero-lead { font-size: 1rem; margin-bottom: 32px; }
-  .hero-panels { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .hero-panels { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
   .hero-panel { padding: 22px; }
   .medal-grid { grid-template-columns: 1fr 1fr; }
   .feature-grid { grid-template-columns: repeat(4, 1fr); }
   .biz-card { padding: 36px 40px; }
-  .anniv-list li { grid-template-columns: 5em 6em 1fr; }
+  .anniv-list li { grid-template-columns: 5em 6em minmax(0, 1fr); }
 }
 
 /* まとめ記事 */
@@ -217,7 +218,7 @@ table.facts th { color: var(--muted); font-weight: 500; white-space: nowrap; }
 .month-tabs button:disabled { opacity: 0.4; cursor: default; }
 .anniv-bydate h2 { font-size: 1.1rem; margin: 14px 0 4px; }
 .month-group h3 { font-size: 0.95rem; margin: 20px 0 0; padding: 6px 0; border-bottom: 2px solid var(--gold); font-family: var(--serif-ja); }
-@media (max-width: 600px) { .month-tabs { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; } .month-tabs button { flex: none; } }
+@media (max-width: 600px) { .month-tabs { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; padding-bottom: 4px; } .month-tabs button { flex: none; } }
 
 /* 注目の周年：ステージ風の2カラムカード */
 .spotlight { position: relative; margin: 10px 0 32px; padding: 26px 22px 24px; border-radius: 6px; color: #f5ead0;
@@ -254,3 +255,7 @@ table.facts th { color: var(--muted); font-weight: 500; white-space: nowrap; }
 .month-index a:hover { background: #15100a; color: #f3e3b6; text-decoration: none; }
 .month-pager { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin: 24px 0 8px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 0.9rem; }
 @media (max-width: 600px) { .month-index ul { grid-template-columns: repeat(4, 1fr); } }
+
+/* スマホで横にはみ出さないように（左右マージン付きの width:100% の入力欄、長い名前） */
+main > .search-input { width: calc(100% - 2 * max(16px, calc((100% - 1008px) / 2))); }
+.anniv-list .name, .spot-name { overflow-wrap: anywhere; }
