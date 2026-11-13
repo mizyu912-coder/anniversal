@@ -29,8 +29,8 @@ const TARGETS = [
     where: "?item wdt:P414 wd:Q217475; wdt:P17 wd:Q17." },
   // 商品ブランド（国内）：設立・発売日
   { type: "brand", kind: "launch", genre: "", minLinks: 4, dateProps: ["P571", "P577"],
-    // 会社・放送局・レーベル等（組織）や一覧記事は除き、商品ブランドだけにする
-    where: "?item wdt:P31 wd:Q431289. { ?item wdt:P17 wd:Q17 } UNION { ?item wdt:P495 wd:Q17 } FILTER NOT EXISTS { ?item wdt:P31/wdt:P279* wd:Q43229 } FILTER NOT EXISTS { ?item wdt:P31 wd:Q13406463 }" },
+    // 会社・放送局・レーベル・航空会社・小売チェーン等（組織）や一覧記事は除き（P279* はタイムアウトするので代表的な分類を列挙）、商品ブランドだけにする
+    where: "?item wdt:P31 wd:Q431289. { ?item wdt:P17 wd:Q17 } UNION { ?item wdt:P495 wd:Q17 } FILTER NOT EXISTS { VALUES ?org { wd:Q43229 wd:Q4830453 wd:Q783794 wd:Q6881511 wd:Q891723 wd:Q167037 wd:Q1589009 wd:Q1616075 wd:Q18127 wd:Q46970 wd:Q2085381 wd:Q1320047 wd:Q1137109 wd:Q210167 wd:Q1762059 wd:Q507619 wd:Q13406463 } ?item wdt:P31 ?org }" },
   // キャラクター：国内作品に登場する架空の人物の誕生日（月日のみ使う）
   { type: "character", kind: "birthday", genre: "", minLinks: 5, dateProps: ["P569"], birthday: true,
     // 日本以外だけで作られた作品（米国コミック・洋画など）に登場するキャラクターは除く
