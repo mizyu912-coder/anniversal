@@ -17,7 +17,8 @@ const MANUAL_POP = 100;
 function readCsv(file: string): Record<string, string>[] {
   const full = path.join(DATA_DIR, file);
   if (!fs.existsSync(full)) return [];
-  const text = fs.readFileSync(full, "utf8");
+  // 改行コードが混在（\r\n と末尾の \n）すると末尾の引用符付きフィールドで解析に失敗するため揃える
+  const text = fs.readFileSync(full, "utf8").replace(/\r\n/g, "\n");
   const res = Papa.parse<Record<string, string>>(text, { header: true, skipEmptyLines: true });
   if (res.errors.length) throw new Error(`${file}: ${res.errors.map((e) => `${e.row}: ${e.message}`).join(", ")}`);
   return res.data;
