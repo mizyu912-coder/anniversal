@@ -27,10 +27,16 @@ const TARGETS = [
     where: "?item wdt:P31 wd:Q5; wdt:P27 wd:Q17; wdt:P1412 wd:Q5287; wdt:P106 wd:Q177220." },
   { type: "company", kind: "founding", genre: "", minLinks: 2, dateProps: ["P571"],
     where: "?item wdt:P414 wd:Q217475; wdt:P17 wd:Q17." },
+  // 商品ブランド（国内）：設立・発売日
+  { type: "brand", kind: "launch", genre: "", minLinks: 4, dateProps: ["P571", "P577"],
+    where: "?item wdt:P31 wd:Q431289. { ?item wdt:P17 wd:Q17 } UNION { ?item wdt:P495 wd:Q17 }" },
+  // キャラクター：国内作品に登場する架空の人物の誕生日（月日のみ使う）
+  { type: "character", kind: "birthday", genre: "", minLinks: 5, dateProps: ["P569"], birthday: true,
+    where: "?item wdt:P31/wdt:P279* wd:Q95074; wdt:P1441 ?work. ?work wdt:P495 wd:Q17." },
 ];
 
 function query(t, prop) {
-  return `SELECT ?item ?label ?kana ?date ?prec ?links ?jawiki ?en WHERE {
+  return `SELECT ?item ?label ?kana ?date ?prec ?links ?jawiki ?en ${t.birthday ? "?work" : ""} WHERE {
   ${t.where}
   ?item wikibase:sitelinks ?links. FILTER(?links >= ${t.minLinks})
   ?item p:${prop}/psv:${prop} [ wikibase:timeValue ?date; wikibase:timePrecision ?prec ].
@@ -65,6 +71,13 @@ function toDate(value, prec) {
   return { date: m[1], precision: "year", key: `${m[1]}9999` };
 }
 
+/** 誕生日は月日だけを使う（架空の人物の「年」は設定上のもののため） */
+function toMonthDay(value, prec) {
+  const m = /^[+-]?\d+-(\d{2})-(\d{2})/.exec(value);
+  if (!m || +prec < 11 || m[1] === "00" || m[2] === "00") return null;
+  return { date: `--${m[1]}-${m[2]}`, precision: "monthday", key: `${m[1]}${m[2]}` };
+}
+
 const normalize = (s) =>
   s.normalize("NFKC").toLowerCase().replace(/（.*?）|\(.*?\)/g, "")
     .replace(/[ァ-ヶ]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0x60))
@@ -89,11 +102,11 @@ for (const t of TARGETS) {
     const earliest = new Map();
     for (const r of rows) {
       const qid = r.item.value.split("/").pop();
-      const d = toDate(r.date.value, r.prec.value);
+      const d = t.birthday ? toMonthDay(r.date.value, r.prec.value) : toDate(r.date.value, r.prec.value);
       if (!d) continue;
       const cur = earliest.get(qid);
       if (!cur || d.key < cur.d.key)
-        earliest.set(qid, { qid, type: t.type, kind: t.kind, genre: t.genre, name: r.label.value, kana: r.kana ? toHiragana(r.kana.value) : "", d, links: +r.links.value, jawiki: r.jawiki?.value ?? "", en: r.en?.value ?? "" });
+        earliest.set(qid, { qid, type: t.type, kind: t.kind, genre: t.genre, name: r.label.value, kana: r.kana ? toHiragana(r.kana.value) : "", d, links: +r.links.value, jawiki: r.jawiki?.value ?? "", en: r.en?.value ?? "", work: r.work?.value.split("/").pop() ?? "", extra: [] });
     }
     for (const [qid, e] of earliest) if (!picked.has(qid)) picked.set(qid, e);
     await new Promise((r) => setTimeout(r, 2000));
@@ -105,17 +118,56 @@ for (const t of TARGETS) {
   }
 }
 
+// 上場企業の上場日（東証の「上場」文の開始日）を追加の起算日として付ける。手作業登録の企業にも付ける
+const manualByQid = new Map(manual.filter((r) => r.wikidata).map((r) => [r.wikidata, r.id]));
+const manualBases = Papa.parse(fs.readFileSync("data/bases.csv", "utf8"), { header: true, skipEmptyLines: true }).data;
+const manualHas = new Set(manualBases.map((b) => `${b.entity_id}:${b.kind}`));
+const extraForManual = [];
+{
+  const rows = await sparql(`SELECT ?item ?date ?prec WHERE {
+  ?item p:P414 ?st. ?st ps:P414 wd:Q217475; pqv:P580 [ wikibase:timeValue ?date; wikibase:timePrecision ?prec ].
+  ?item wdt:P17 wd:Q17.
+}`);
+  const earliest = new Map();
+  for (const r of rows) {
+    const qid = r.item.value.split("/").pop();
+    const d = toDate(r.date.value, r.prec.value);
+    if (d && (!earliest.has(qid) || d.key < earliest.get(qid).key)) earliest.set(qid, d);
+  }
+  for (const [qid, d] of earliest) {
+    const e = entities.get(qid);
+    if (e && e.type === "company") e.extra.push({ kind: "listing", d });
+    const mid = manualByQid.get(qid);
+    if (mid && !manualHas.has(`${mid}:listing`)) extraForManual.push({ id: mid, qid, kind: "listing", d });
+  }
+  console.log(`上場日: ${earliest.size}件`);
+}
+
+// キャラクターの登場作品を親として結びつける（取り込み済み or 手作業登録の作品のみ）
+const parentOf = (e) => {
+  if (!e.work) return "";
+  if (entities.has(e.work) && entities.get(e.work).type !== "character") return e.work.toLowerCase();
+  return manualByQid.get(e.work) ?? "";
+};
+
 const list = [...entities.values()].sort((a, b) => b.links - a.links || a.qid.localeCompare(b.qid));
 // 英語名は別名として持たせる（ローマ字・英語での検索用）
 const ents = list.map((e) => ({
   id: e.qid.toLowerCase(), type: e.type, name: e.name, kana: e.kana,
   aliases: e.en && normalize(e.en) !== normalize(e.name) ? e.en.replace(/;/g, ",") : "",
-  genre: e.genre, parent_id: "", official_url: "", wikidata: e.qid, links: e.links, jawiki: e.jawiki,
+  genre: e.genre, parent_id: parentOf(e), official_url: "", wikidata: e.qid, links: e.links, jawiki: e.jawiki,
 }));
-const bases = list.map((e) => ({
-  entity_id: e.qid.toLowerCase(), kind: e.kind, date: e.d.date, precision: e.d.precision, official: "false",
-  source: `https://www.wikidata.org/wiki/${e.qid}`, note: "",
-}));
+const src = (qid) => `https://www.wikidata.org/wiki/${qid}`;
+const bases = [
+  ...list.flatMap((e) =>
+    [{ kind: e.kind, d: e.d }, ...e.extra].map((b) => ({
+      entity_id: e.qid.toLowerCase(), kind: b.kind, date: b.d.date, precision: b.d.precision, official: "false", source: src(e.qid), note: "",
+    })),
+  ),
+  ...extraForManual.map((x) => ({
+    entity_id: x.id, kind: x.kind, date: x.d.date, precision: x.d.precision, official: "false", source: src(x.qid), note: "",
+  })),
+];
 fs.mkdirSync("data/import", { recursive: true });
 fs.writeFileSync("data/import/wikidata-entities.csv", Papa.unparse(ents) + "\n");
 fs.writeFileSync("data/import/wikidata-bases.csv", Papa.unparse(bases) + "\n");

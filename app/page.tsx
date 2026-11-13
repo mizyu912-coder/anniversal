@@ -16,7 +16,10 @@ export default function Home() {
   const nextYear = anniversariesInYear(entities, next);
   // ジャンルが偏らないよう、各ジャンルから知名度の高い順に大きな節目を拾う
   const byType = new Map<string, typeof nextYear>();
+  const seen = new Set<string>(); // 設立と上場の両方が節目の企業などを1回だけにする
   for (const a of sortByPop(nextYear.filter((a) => a.n % 10 === 0 || a.n % 25 === 0))) {
+    if (seen.has(a.entityId)) continue;
+    seen.add(a.entityId);
     const list = byType.get(a.type) ?? [];
     list.push(a);
     byType.set(a.type, list);
