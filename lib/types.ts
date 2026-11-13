@@ -53,6 +53,8 @@ export interface Entity {
   wikidata: string;
   /** 知名度の目安（大きいほど有名。Wikidataのサイトリンク数、手作業登録は100） */
   pop: number;
+  /** Wikipedia冒頭の概要（CC BY-SA 4.0、出典表示が必要） */
+  summary: { title: string; text: string } | null;
   bases: Base[];
 }
 

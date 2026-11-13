@@ -30,12 +30,14 @@ const TARGETS = [
 ];
 
 function query(t, prop) {
-  return `SELECT ?item ?label ?kana ?date ?prec ?links WHERE {
+  return `SELECT ?item ?label ?kana ?date ?prec ?links ?jawiki ?en WHERE {
   ${t.where}
   ?item wikibase:sitelinks ?links. FILTER(?links >= ${t.minLinks})
   ?item p:${prop}/psv:${prop} [ wikibase:timeValue ?date; wikibase:timePrecision ?prec ].
   ?item rdfs:label ?label. FILTER(LANG(?label) = "ja")
   OPTIONAL { ?item wdt:P1814 ?kana. }
+  OPTIONAL { ?article schema:about ?item; schema:isPartOf <https://ja.wikipedia.org/>; schema:name ?jawiki. }
+  OPTIONAL { ?item rdfs:label ?en. FILTER(LANG(?en) = "en") }
 }`;
 }
 
@@ -91,7 +93,7 @@ for (const t of TARGETS) {
       if (!d) continue;
       const cur = earliest.get(qid);
       if (!cur || d.key < cur.d.key)
-        earliest.set(qid, { qid, type: t.type, kind: t.kind, genre: t.genre, name: r.label.value, kana: r.kana ? toHiragana(r.kana.value) : "", d, links: +r.links.value });
+        earliest.set(qid, { qid, type: t.type, kind: t.kind, genre: t.genre, name: r.label.value, kana: r.kana ? toHiragana(r.kana.value) : "", d, links: +r.links.value, jawiki: r.jawiki?.value ?? "", en: r.en?.value ?? "" });
     }
     for (const [qid, e] of earliest) if (!picked.has(qid)) picked.set(qid, e);
     await new Promise((r) => setTimeout(r, 2000));
@@ -104,7 +106,12 @@ for (const t of TARGETS) {
 }
 
 const list = [...entities.values()].sort((a, b) => b.links - a.links || a.qid.localeCompare(b.qid));
-const ents = list.map((e) => ({ id: e.qid.toLowerCase(), type: e.type, name: e.name, kana: e.kana, aliases: "", genre: e.genre, parent_id: "", official_url: "", wikidata: e.qid, links: e.links }));
+// 英語名は別名として持たせる（ローマ字・英語での検索用）
+const ents = list.map((e) => ({
+  id: e.qid.toLowerCase(), type: e.type, name: e.name, kana: e.kana,
+  aliases: e.en && normalize(e.en) !== normalize(e.name) ? e.en.replace(/;/g, ",") : "",
+  genre: e.genre, parent_id: "", official_url: "", wikidata: e.qid, links: e.links, jawiki: e.jawiki,
+}));
 const bases = list.map((e) => ({
   entity_id: e.qid.toLowerCase(), kind: e.kind, date: e.d.date, precision: e.d.precision, official: "false",
   source: `https://www.wikidata.org/wiki/${e.qid}`, note: "",

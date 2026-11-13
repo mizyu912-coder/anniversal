@@ -59,6 +59,7 @@ export function getEntities(): Entity[] {
         wikidata: r.wikidata ?? "",
         // links 列（サイトリンク数）がなければ、リンク数順に並んだ行の位置から推定
         pop: file === "entities.csv" ? MANUAL_POP : r.links ? +r.links : Math.max(2, Math.round(60 * (1 - i / rows.length))),
+        summary: null,
         bases: [],
       });
     });
@@ -78,6 +79,10 @@ export function getEntities(): Entity[] {
       note: r.note ?? "",
     };
     e.bases.push(base);
+  }
+  for (const r of readCsv("import/summaries.csv")) {
+    const e = entities.get(r.id);
+    if (e && r.summary) e.summary = { title: r.title, text: r.summary };
   }
   cache = [...entities.values()];
   return cache;

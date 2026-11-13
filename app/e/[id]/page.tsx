@@ -85,6 +85,24 @@ export default async function EntityPage({ params }: Props) {
           <Countdown key={b.kind} year={b.year!} month={b.month} day={b.day} label={BASE_KINDS[b.kind]} />
         ))}
 
+      {e.summary && (
+        <section className="card intro">
+          <h2>{e.type === "company" ? "企業紹介" : e.type === "musician" ? "プロフィール" : "作品紹介"}</h2>
+          <p>{e.summary.text}</p>
+          <p className="credit">
+            出典：
+            <a href={`https://ja.wikipedia.org/wiki/${encodeURIComponent(e.summary.title)}`} target="_blank" rel="noopener">
+              Wikipedia「{e.summary.title}」
+            </a>
+            （
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja" target="_blank" rel="noopener license">
+              CC BY-SA 4.0
+            </a>
+            ）
+          </p>
+        </section>
+      )}
+
       <section className="card">
         <h2>基本情報</h2>
         <table className="facts">

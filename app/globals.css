@@ -202,3 +202,8 @@ table.facts th { color: var(--muted); font-weight: 500; white-space: nowrap; }
 .article-list small { flex-basis: 100%; color: var(--muted); font-size: 0.82rem; padding-left: 4.6em; }
 .article-list .nth { min-width: 4.2em; }
 .small { font-size: 0.82rem; }
+
+/* 作品紹介 */
+.intro p { margin: 0; line-height: 1.95; }
+.intro .credit { margin-top: 10px; font-size: 0.76rem; color: var(--muted); }
+.intro .credit a { color: var(--muted); text-decoration: underline; }
