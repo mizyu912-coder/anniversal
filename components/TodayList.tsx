@@ -18,10 +18,12 @@ interface Hit {
 export default function TodayList() {
   const [hits, setHits] = useState<Hit[] | null>(null);
   const [date, setDate] = useState("");
+  const [md, setMd] = useState("");
   useEffect(() => {
     const now = new Date();
     const y = now.getFullYear(), m = now.getMonth() + 1, d = now.getDate();
     setDate(`${m}月${d}日`);
+    setMd(`${m}-${d}`);
     fetch("/search-index.json")
       .then((r) => r.json())
       .then((index: SearchItem[]) => {
@@ -55,6 +57,12 @@ export default function TodayList() {
             </li>
           ))}
         </ul>
+      )}
+      {md && (
+        <p className="more">
+          <Link href={`/today/${md}/`}>今日（{date}）は何の日？をすべて見る</Link>
+          <Link href="/today/">ほかの日の記念日を見る</Link>
+        </p>
       )}
     </section>
   );

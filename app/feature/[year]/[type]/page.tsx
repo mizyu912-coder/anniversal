@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 import AdSlot from "@/components/AdSlot";
 import AnnivList from "@/components/AnnivList";
 import { getEntities } from "@/lib/data";
@@ -41,9 +42,7 @@ export default async function FeaturePage({ params }: Props) {
   const total = groups.reduce((s, [, l]) => s + l.length, 0);
   return (
     <>
-      <p className="breadcrumb">
-        <Link href="/">トップ</Link> › <Link href="/feature/">特集</Link> › {year}年 › {ENTITY_TYPES[type]}
-      </p>
+      <Breadcrumb items={[["特集", "/feature/"], [`${year}年`, `/year/${year}/`], [ENTITY_TYPES[type]]]} />
       <h1>{featureTitle(year, type)}</h1>
       <p className="lead">
         {year}年に節目の周年を迎える{ENTITY_TYPES[type]}は{total}件です。周年の大きい順に並べています。

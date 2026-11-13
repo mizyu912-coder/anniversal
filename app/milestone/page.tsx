@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 import { FEATURE_YEARS, MILESTONES } from "@/lib/site";
 
 const y0 = FEATURE_YEARS[0];
@@ -14,9 +15,7 @@ export const metadata: Metadata = {
 export default function MilestoneIndex() {
   return (
     <article className="article">
-      <p className="breadcrumb">
-        <Link href="/">トップ</Link> › 節目別の特集
-      </p>
+      <Breadcrumb items={[["節目別の特集"]]} />
       <h1>節目別の周年特集</h1>
       <p className="article-lead">
         {y0}〜{y1}年に大きな節目を迎える作品・ブランド・企業を、周年の数ごとにまとめました。

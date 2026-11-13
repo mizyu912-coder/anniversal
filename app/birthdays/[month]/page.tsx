@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 import { entriesInMonth, MONTHS } from "@/lib/calendar";
 import { getEntity } from "@/lib/data";
 import Spotlight from "@/components/Spotlight";
@@ -38,9 +39,7 @@ export default async function BirthdaysMonth({ params }: Props) {
   };
   return (
     <>
-      <p className="breadcrumb">
-        <Link href="/">トップ</Link> › <Link href="/birthdays/">キャラクター誕生日</Link> › {month}月
-      </p>
+      <Breadcrumb items={[["キャラクター誕生日", "/birthdays/"], [`${month}月`]]} />
       <h1>{month}月生まれのキャラクター</h1>
       <ul className="years">
         {MONTHS.map((m) => (

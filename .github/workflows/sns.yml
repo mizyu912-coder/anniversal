@@ -1,0 +1,35 @@
+name: Post today's anniversaries to SNS
+
+# 毎朝8時（日本時間）に「今日で○周年」を Bluesky / X に投稿する。
+# アカウント情報を Secrets に登録したものだけに投稿する（未登録ならスキップ）。
+on:
+  schedule:
+    - cron: "0 23 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "投稿せず本文を確認するだけ"
+        type: boolean
+        default: true
+
+jobs:
+  post:
+    if: github.event_name == 'workflow_dispatch' || vars.SNS_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts/sns
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/sns/post-today.mjs
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && 'true' || 'false' }}
+          BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
+          BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}

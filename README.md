@@ -12,6 +12,10 @@
 | 周年カレンダー（月別の記念日） | `/calendar/4/` |
 | キャラクター誕生日 | `/birthdays/5/` |
 | 特集（その年に周年を迎える○○一覧） | `/feature/2027/anime/` |
+| 今日は何の日（日別・366ページ） | `/today/11-13/` |
+| 生まれ年から探す（年別・年×種別） | `/born/1995/`、`/born/1995/anime/` |
+| 種別一覧（人気順） | `/type/anime/` |
+| RSS（まとめ記事） | `/feed.xml` |
 
 全ページを静的HTMLとして `out/` に書き出すので、レンタルサーバーに置くだけで動きます。
 
@@ -98,3 +102,11 @@ GitHubのリポジトリ設定 → Secrets and variables → Actions で以下�
 | AMAZON_TAG | AmazonアソシエイトのトラッキングID（任意） |
 | RAKUTEN_AFF_ID | 楽天アフィリエイトID（任意） |
 | REPORT_FORM_URL | 情報提供用のGoogleフォームURL（任意） |
+
+## 流入のための自動処理
+
+- **IndexNow**：デプロイ後に一覧・記事ページのURLを Bing などへ通知します（キーは `public/` の英数字32桁の `.txt`）。
+- **SNS自動投稿**（`.github/workflows/sns.yml`）：毎朝8時（日本時間）に「今日で○周年」を投稿します。
+  - Bluesky：Secrets に `BSKY_HANDLE`（例 `anniversary-db.bsky.social`）と `BSKY_APP_PASSWORD`（設定 → プライバシーとセキュリティ → アプリパスワード）
+  - X：Secrets に `X_API_KEY` `X_API_SECRET` `X_ACCESS_TOKEN` `X_ACCESS_SECRET`（developer.x.com で作るアプリの Read and Write 権限のキー）
+  - Variables に `SNS_ENABLED` = `true` を登録すると毎朝の自動投稿が始まります。Actions タブの「Post today's anniversaries to SNS」から手動実行すると、投稿せずに本文だけ確認できます。

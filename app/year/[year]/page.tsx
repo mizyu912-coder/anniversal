@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 import YearFilter from "@/components/YearFilter";
 import { getEntities } from "@/lib/data";
 import { anniversariesInYear } from "@/lib/anniv";
@@ -26,9 +27,7 @@ export default async function YearPage({ params }: Props) {
   const items = anniversariesInYear(getEntities(), year).filter((a) => a.milestone);
   return (
     <>
-      <p className="breadcrumb">
-        <Link href="/">トップ</Link> › {year}年
-      </p>
+      <Breadcrumb items={[[`${year}年`]]} />
       <h1>{year}年に周年を迎える作品・ブランド・企業</h1>
       <ul className="years">
         {yearRange().map((y) => (
