@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const y of yearRange()) pages.push(`/year/${y}/`);
   for (let m = 1; m <= 12; m++) pages.push(`/calendar/${m}/`, `/birthdays/${m}/`);
   for (const y of FEATURE_YEARS) pages.push(`/matome/${y}/`);
+  for (const y of FEATURE_YEARS) for (let m = 1; m <= 12; m++) pages.push(`/matome/${y}/${m}/`);
   for (const y of FEATURE_YEARS) for (const t of featureTypes()) pages.push(`/feature/${y}/${t}/`);
   for (const e of getEntities()) pages.push(`/e/${e.id}/`);
   return pages.map((p) => ({ url: u(p) }));

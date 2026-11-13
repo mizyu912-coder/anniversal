@@ -18,6 +18,8 @@ export const metadata: Metadata = {
 
 /** Google アナリティクス 4 の測定ID（G-XXXXXXX）。未設定なら読み込まない */
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
+// AdSense のサイト運営者ID（ca-pub-...）。設定するとサイト確認用のコードが入る（ads.txt は app/ads.txt で生成）
+const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "";
 
 export const viewport: Viewport = { themeColor: "#0f1014" };
 
@@ -44,6 +46,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Script id="ga4" strategy="afterInteractive">
               {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}
             </Script>
+          </>
+        )}
+        {ADSENSE_CLIENT && (
+          <>
+            <meta name="google-adsense-account" content={ADSENSE_CLIENT} />
+            {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+            <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`} crossOrigin="anonymous" />
           </>
         )}
       </head>
