@@ -6,7 +6,7 @@ import HeroSearch from "@/components/HeroSearch";
 import Logo from "@/components/Logo";
 import { getEntities } from "@/lib/data";
 import { anniversariesInYear, sortByPop } from "@/lib/anniv";
-import { BUILD_YEAR, FEATURE_YEARS, yearRange } from "@/lib/site";
+import { BUILD_YEAR, FEATURE_YEARS, MILESTONES, yearRange } from "@/lib/site";
 import { featureTitle, featureTypes } from "@/lib/feature";
 import { ENTITY_TYPES } from "@/lib/types";
 
@@ -127,6 +127,22 @@ export default function Home() {
               <Link href={`/feature/${next}/${t}/`}>
                 <span className="feature-type">{ENTITY_TYPES[t]}</span>
                 <span>{featureTitle(next, t)}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="section">
+        <div className="section-head">
+          <p className="eyebrow">MILESTONES</p>
+          <h2>節目別の特集</h2>
+        </div>
+        <ul className="chips milestone-chips">
+          {MILESTONES.map((n) => (
+            <li key={n}>
+              <Link href={`/milestone/${n}/`}>
+                <b>{n}</b>周年
               </Link>
             </li>
           ))}

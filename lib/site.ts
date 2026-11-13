@@ -17,3 +17,6 @@ export function yearRange(): number[] {
 
 export const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "";
 export const RAKUTEN_AFF_ID = process.env.NEXT_PUBLIC_RAKUTEN_AFF_ID || "";
+
+/** 節目別特集（/milestone/N/）で扱う周年 */
+export const MILESTONES = [10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 100];

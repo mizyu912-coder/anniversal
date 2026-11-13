@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AdSlot from "@/components/AdSlot";
+import Spotlight from "@/components/Spotlight";
 import { getEntities } from "@/lib/data";
 import { anniversariesInYear, sortByDate, sortByPop } from "@/lib/anniv";
 import { FEATURE_YEARS } from "@/lib/site";
@@ -72,33 +74,18 @@ export default async function MonthlyPage({ params }: Props) {
             を迎えます。ほかにも{all.length}件の節目があります。ここでは注目の10件と、日付順の一覧を紹介します。
           </p>
 
-          <section className="spotlight" aria-labelledby="spotlight-title">
-            <header className="spotlight-head">
-              <span className="spotlight-en">SPOTLIGHT</span>
-              <h2 id="spotlight-title">
-                {month}月の注目の周年
-              </h2>
-            </header>
-            <ol className="spotlight-grid">
-              {top.map((a, i) => (
-                <li key={a.entityId}>
-                  <Link href={`/e/${a.entityId}/`} className="spot-card">
-                    <span className="spot-rank">{String(i + 1).padStart(2, "0")}</span>
-                    <span className="spot-nth">
-                      <b>{a.n}</b>周年
-                    </span>
-                    <span className="spot-body">
-                      <span className="spot-name">{a.name}</span>
-                      <span className="spot-meta">
-                        <span className="spot-tag">{label(a)}</span>
-                        {when(a)}の{BASE_KINDS[a.kind]}
-                      </span>
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ol>
-          </section>
+          <Spotlight
+            title={`${month}月の注目の周年`}
+            items={top.map((a) => ({
+              key: a.entityId,
+              href: `/e/${a.entityId}/`,
+              big: String(a.n),
+              unit: "周年",
+              name: a.name,
+              tag: label(a),
+              meta: `${when(a)}の${BASE_KINDS[a.kind]}`,
+            }))}
+          />
 
           {rest.length > 0 && (
             <section className="card">
@@ -130,6 +117,7 @@ export default async function MonthlyPage({ params }: Props) {
         <Link href={`/matome/${year}/`}>{year}年のまとめ</Link>
         {next ? <Link href={`/matome/${next[0]}/${next[1]}/`}>{next[0]}年{next[1]}月 ›</Link> : <span />}
       </nav>
+      <AdSlot />
       <p className="muted small">日付は公開情報（Wikidataなど）をもとにしており、公式発表と異なる場合があります。</p>
     </article>
   );

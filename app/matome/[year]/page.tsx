@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AdSlot from "@/components/AdSlot";
 import { getEntities } from "@/lib/data";
 import { anniversariesInYear, sortByPop } from "@/lib/anniv";
 import { featureTypes } from "@/lib/feature";
@@ -110,9 +111,10 @@ export default async function MatomePage({ params }: Props) {
           </section>
         ))}
 
+      <AdSlot />
       <p className="muted small">
         日付は公開情報（Wikidataなど）をもとにしており、公式発表と異なる場合があります。ほかの周年は
-        <Link href={`/year/${year}/`}>{year}年の周年一覧</Link>から探せます。
+        <Link href={`/year/${year}/`}>{year}年の周年一覧</Link>や<Link href="/milestone/">節目別の特集</Link>から探せます。
       </p>
     </article>
   );

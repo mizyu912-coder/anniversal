@@ -36,6 +36,7 @@ jobs:
           NEXT_PUBLIC_GA_ID: ${{ vars.GA_ID }}
           NEXT_PUBLIC_GSC_VERIFICATION: ${{ vars.GSC_VERIFICATION }}
           NEXT_PUBLIC_ADSENSE_CLIENT: ${{ vars.ADSENSE_CLIENT }}
+          NEXT_PUBLIC_ADSENSE_SLOT: ${{ vars.ADSENSE_SLOT }}
       # 画面遷移の先読み用ファイル（約8,500個）はアップロードしない。
       # なくても通常のページ遷移になるだけで表示に影響はない
       - run: find out -type f -name '*.txt' ! -path 'out/robots.txt' -delete

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AdSlot from "@/components/AdSlot";
 import AffiliateLinks from "@/components/AffiliateLinks";
 import Countdown from "@/components/Countdown";
 import { getChildren, getEntities, getEntity, getSameYear } from "@/lib/data";
@@ -157,6 +158,8 @@ export default async function EntityPage({ params }: Props) {
           </tbody>
         </table>
       </section>
+
+      <AdSlot />
 
       {years.length > 0 && (
         <section className="card">
