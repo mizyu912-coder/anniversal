@@ -215,8 +215,33 @@ table.facts th { color: var(--muted); font-weight: 500; white-space: nowrap; }
 .month-tabs button.current { background: #15100a; border-color: #15100a; color: #f3e3b6; }
 .month-tabs button.current small { color: #d6ad5c; }
 .month-tabs button:disabled { opacity: 0.4; cursor: default; }
-.anniv-top { margin: 8px 0 28px; padding: 4px 16px 8px; border: 1px solid var(--gold); border-radius: var(--radius); background: #fffaf0; }
-.anniv-top h2, .anniv-bydate h2 { font-size: 1.1rem; margin: 14px 0 4px; }
-.anniv-top .anniv-list li:last-child { border-bottom: 0; }
+.anniv-bydate h2 { font-size: 1.1rem; margin: 14px 0 4px; }
 .month-group h3 { font-size: 0.95rem; margin: 20px 0 0; padding: 6px 0; border-bottom: 2px solid var(--gold); font-family: var(--serif-ja); }
 @media (max-width: 600px) { .month-tabs { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; } .month-tabs button { flex: none; } }
+
+/* 注目の周年：ステージ風の2カラムカード */
+.spotlight { position: relative; margin: 10px 0 32px; padding: 26px 22px 24px; border-radius: 6px; color: #f5ead0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% -10%, rgba(255, 214, 140, 0.22), transparent 70%),
+    radial-gradient(ellipse 120% 90% at 50% 120%, rgba(150, 12, 28, 0.55), transparent 70%),
+    linear-gradient(180deg, #2a0a10 0%, #16080b 100%);
+  border: 1px solid var(--gold); box-shadow: 0 10px 30px rgba(40, 6, 12, 0.25); }
+.spotlight::before { content: ""; position: absolute; inset: 5px; border: 1px solid rgba(226, 200, 140, 0.35); border-radius: 4px; pointer-events: none; }
+.spotlight-head { text-align: center; margin-bottom: 18px; }
+.spotlight-en { display: inline-flex; align-items: center; gap: 12px; font-family: var(--serif-en); letter-spacing: 0.4em; font-size: 0.78rem; color: var(--gold-light); }
+.spotlight-en::before, .spotlight-en::after { content: ""; width: 36px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-light)); }
+.spotlight-en::after { transform: scaleX(-1); }
+.spotlight-head h2 { margin: 4px 0 0; font-family: var(--serif-ja); font-size: 1.35rem; font-weight: 600; letter-spacing: 0.08em; color: #fff4dc; }
+.spotlight-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; counter-reset: none; }
+.spot-card { position: relative; display: grid; grid-template-columns: auto auto 1fr; align-items: center; gap: 14px; height: 100%; padding: 14px 16px; border-radius: 4px; color: inherit;
+  background: linear-gradient(135deg, rgba(255, 240, 210, 0.08), rgba(255, 240, 210, 0.02)); border: 1px solid rgba(226, 200, 140, 0.28); transition: border-color 0.2s, background 0.2s, transform 0.2s; }
+.spot-card:hover { text-decoration: none; border-color: var(--gold-light); background: linear-gradient(135deg, rgba(255, 228, 170, 0.16), rgba(255, 228, 170, 0.04)); transform: translateY(-1px); }
+.spot-rank { font-family: var(--serif-en); font-size: 0.85rem; color: rgba(226, 200, 140, 0.7); letter-spacing: 0.05em; align-self: start; }
+.spot-nth { min-width: 4.4em; text-align: center; font-family: var(--serif-ja); font-size: 0.78rem; color: var(--gold-light); line-height: 1.1; }
+.spot-nth b { display: block; font-family: var(--serif-en); font-size: 2.2rem; font-weight: 700; line-height: 1; background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.spot-body { min-width: 0; }
+.spot-name { display: block; font-family: var(--serif-ja); font-weight: 600; font-size: 1.02rem; color: #fff8e8; line-height: 1.45; }
+.spot-meta { display: block; margin-top: 4px; font-size: 0.76rem; color: rgba(245, 234, 208, 0.72); }
+.spot-tag { display: inline-block; margin-right: 6px; padding: 0 6px; border: 1px solid rgba(226, 200, 140, 0.5); border-radius: 2px; color: var(--gold-light); font-size: 0.68rem; letter-spacing: 0.04em; }
+.spotlight-grid li:first-child .spot-card, .spotlight-grid li:nth-child(2) .spot-card { border-color: rgba(226, 200, 140, 0.6); }
+@media (max-width: 640px) { .spotlight { padding: 22px 12px 14px; } .spotlight-grid { grid-template-columns: 1fr; } .spot-nth b { font-size: 1.9rem; } .spot-card { gap: 10px; padding: 12px; } .spot-nth { min-width: 3.4em; } }

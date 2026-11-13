@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import AnnivList from "./AnnivList";
-import { ENTITY_TYPES } from "@/lib/types";
+import Link from "next/link";
+import AnnivList, { dateLabel } from "./AnnivList";
+import { BASE_KINDS, ENTITY_TYPES } from "@/lib/types";
 import { isMilestone, NTH_OPTIONS, sortByDate, sortByPop } from "@/lib/anniv";
 import type { Anniversary, EntityType, SearchItem } from "@/lib/types";
 
@@ -136,9 +137,32 @@ export default function YearFilter({ items: milestoneItems, year }: { items: Ann
         <AnnivList items={[]} />
       ) : (
         <>
-          <section className="anniv-top">
-            <h2>{month ? `${month}月の` : ""}注目の周年</h2>
-            <AnnivList items={top} />
+          <section className="spotlight" aria-labelledby="spotlight-title">
+            <header className="spotlight-head">
+              <span className="spotlight-en">SPOTLIGHT</span>
+              <h2 id="spotlight-title">
+                {year}年{month ? ` ${month}月` : ""}の注目の周年
+              </h2>
+            </header>
+            <ol className="spotlight-grid">
+              {top.map((a, i) => (
+                <li key={key(a)}>
+                  <Link href={`/e/${a.entityId}/`} className="spot-card">
+                    <span className="spot-rank">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="spot-nth">
+                      <b>{a.n}</b>周年
+                    </span>
+                    <span className="spot-body">
+                      <span className="spot-name">{a.name}</span>
+                      <span className="spot-meta">
+                        <span className="spot-tag">{ENTITY_TYPES[a.type]}</span>
+                        {dateLabel(a)}・{BASE_KINDS[a.kind]}（{a.baseYear}年）
+                      </span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ol>
           </section>
           {groups.length > 0 && (
             <section className="anniv-bydate">
