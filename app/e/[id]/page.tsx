@@ -87,7 +87,7 @@ export default async function EntityPage({ params }: Props) {
 
       {e.summary && (
         <section className="card intro">
-          <h2>{e.type === "company" ? "企業紹介" : e.type === "musician" ? "プロフィール" : "作品紹介"}</h2>
+          <h2>{e.type === "company" ? "企業紹介" : e.type === "musician" || e.type === "character" ? "プロフィール" : e.type === "brand" ? "ブランド紹介" : "作品紹介"}</h2>
           <p>{e.summary.text}</p>
           <p className="credit">
             出典：
