@@ -11,6 +11,9 @@ const DATA_DIR = path.join(process.cwd(), "data");
 const ENTITY_FILES = ["entities.csv", "import/wikidata-entities.csv"];
 const BASE_FILES = ["bases.csv", "import/wikidata-bases.csv"];
 
+/** 手作業で登録したデータの知名度（厳選した有名作品なので上位に出す） */
+const MANUAL_POP = 100;
+
 function readCsv(file: string): Record<string, string>[] {
   const full = path.join(DATA_DIR, file);
   if (!fs.existsSync(full)) return [];
@@ -36,20 +39,28 @@ let cache: Entity[] | null = null;
 export function getEntities(): Entity[] {
   if (cache) return cache;
   const entities = new Map<string, Entity>();
-  for (const r of ENTITY_FILES.flatMap(readCsv)) {
-    if (!(r.type in ENTITY_TYPES)) throw new Error(`不明なtype: ${r.type} (${r.id})`);
-    if (entities.has(r.id)) throw new Error(`idが重複: ${r.id}`);
-    entities.set(r.id, {
-      id: r.id,
-      type: r.type as EntityType,
-      name: r.name,
-      kana: r.kana ?? "",
-      aliases: (r.aliases ?? "").split(";").map((s) => s.trim()).filter(Boolean),
-      genre: r.genre ?? "",
-      parentId: r.parent_id || null,
-      officialUrl: r.official_url ?? "",
-      wikidata: r.wikidata ?? "",
-      bases: [],
+  for (const file of ENTITY_FILES) {
+    const rows = readCsv(file);
+    rows.forEach((r, i) => {
+      if (!(r.type in ENTITY_TYPES)) throw new Error(`不明なtype: ${r.type} (${r.id})`);
+      if (entities.has(r.id)) throw new Error(`idが重複: ${r.id}`);
+      entities.set(r.id, {
+        id: r.id,
+        type: r.type as EntityType,
+        name: r.name,
+        kana: r.kana ?? "",
+        aliases: (r.aliases ?? "")
+          .split(";")
+          .map((s) => s.trim())
+          .filter(Boolean),
+        genre: r.genre ?? "",
+        parentId: r.parent_id || null,
+        officialUrl: r.official_url ?? "",
+        wikidata: r.wikidata ?? "",
+        // links 列（サイトリンク数）がなければ、リンク数順に並んだ行の位置から推定
+        pop: file === "entities.csv" ? MANUAL_POP : r.links ? +r.links : Math.max(2, Math.round(60 * (1 - i / rows.length))),
+        bases: [],
+      });
     });
   }
   for (const r of BASE_FILES.flatMap(readCsv)) {
@@ -86,6 +97,28 @@ export function buildSearchIndex(): SearchItem[] {
     t: e.type,
     name: e.name,
     keys: normalize([e.name, e.kana, ...e.aliases].join(" ")),
+    p: e.pop,
     bases: e.bases.map((b) => ({ k: b.kind, y: b.year, m: b.month, d: b.day })),
   }));
+}
+
+let byYear: Map<number, Entity[]> | null = null;
+
+/** 同じ年に生まれた（起算日が同じ年の）ほかの作品・ブランド・企業を知名度順に */
+export function getSameYear(e: Entity, limit = 12): { year: number; list: Entity[] } | null {
+  const base = e.bases.find((b) => b.kind !== "birthday" && b.year !== null);
+  if (!base) return null;
+  if (!byYear) {
+    byYear = new Map();
+    for (const x of getEntities()) {
+      const b = x.bases.find((b) => b.kind !== "birthday" && b.year !== null);
+      if (!b) continue;
+      const list = byYear.get(b.year!) ?? [];
+      list.push(x);
+      byYear.set(b.year!, list);
+    }
+    for (const list of byYear.values()) list.sort((a, b) => b.pop - a.pop);
+  }
+  const list = (byYear.get(base.year!) ?? []).filter((x) => x.id !== e.id).slice(0, limit);
+  return list.length ? { year: base.year!, list } : null;
 }

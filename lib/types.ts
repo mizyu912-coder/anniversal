@@ -51,6 +51,8 @@ export interface Entity {
   parentId: string | null;
   officialUrl: string;
   wikidata: string;
+  /** 知名度の目安（大きいほど有名。Wikidataのサイトリンク数、手作業登録は100） */
+  pop: number;
   bases: Base[];
 }
 
@@ -65,6 +67,7 @@ export interface Anniversary {
   day: number | null;
   n: number;
   milestone: boolean;
+  pop: number;
 }
 
 /** 逆引き検索用インデックスの1件（クライアントに配信） */
@@ -73,5 +76,7 @@ export interface SearchItem {
   t: EntityType;
   name: string;
   keys: string;
+  /** 知名度 */
+  p: number;
   bases: { k: BaseKind; y: number | null; m: number | null; d: number | null }[];
 }

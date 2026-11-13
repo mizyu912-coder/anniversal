@@ -5,7 +5,7 @@ import HeroArt from "@/components/HeroArt";
 import HeroSearch from "@/components/HeroSearch";
 import Logo from "@/components/Logo";
 import { getEntities } from "@/lib/data";
-import { anniversariesInYear } from "@/lib/anniv";
+import { anniversariesInYear, sortByPop } from "@/lib/anniv";
 import { BUILD_YEAR, yearRange } from "@/lib/site";
 import { featureTitle, featureTypes } from "@/lib/feature";
 import { ENTITY_TYPES } from "@/lib/types";
@@ -14,9 +14,9 @@ export default function Home() {
   const next = BUILD_YEAR + 1;
   const entities = getEntities();
   const nextYear = anniversariesInYear(entities, next);
-  // ジャンルが偏らないよう、各ジャンルから大きい節目を順番に拾う
+  // ジャンルが偏らないよう、各ジャンルから知名度の高い順に大きな節目を拾う
   const byType = new Map<string, typeof nextYear>();
-  for (const a of nextYear.filter((a) => a.n % 10 === 0 || a.n % 25 === 0).sort((a, b) => b.n - a.n)) {
+  for (const a of sortByPop(nextYear.filter((a) => a.n % 10 === 0 || a.n % 25 === 0))) {
     const list = byType.get(a.type) ?? [];
     list.push(a);
     byType.set(a.type, list);
@@ -25,6 +25,7 @@ export default function Home() {
   for (let round = 0; big.length < 8 && round < 8; round++) {
     for (const list of byType.values()) if (list[round] && big.length < 8) big.push(list[round]);
   }
+  big.sort((a, b) => b.n - a.n);
   const counts = Object.keys(ENTITY_TYPES).length;
   return (
     <>
@@ -69,6 +70,7 @@ export default function Home() {
           ))}
         </ul>
         <p className="more">
+          <Link href={`/matome/${next}/`}>{next}年の周年まとめを読む</Link>
           <Link href={`/year/${next}/`}>{next}年の周年をすべて見る</Link>
         </p>
       </section>

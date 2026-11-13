@@ -104,7 +104,7 @@ for (const t of TARGETS) {
 }
 
 const list = [...entities.values()].sort((a, b) => b.links - a.links || a.qid.localeCompare(b.qid));
-const ents = list.map((e) => ({ id: e.qid.toLowerCase(), type: e.type, name: e.name, kana: e.kana, aliases: "", genre: e.genre, parent_id: "", official_url: "", wikidata: e.qid }));
+const ents = list.map((e) => ({ id: e.qid.toLowerCase(), type: e.type, name: e.name, kana: e.kana, aliases: "", genre: e.genre, parent_id: "", official_url: "", wikidata: e.qid, links: e.links }));
 const bases = list.map((e) => ({
   entity_id: e.qid.toLowerCase(), kind: e.kind, date: e.d.date, precision: e.d.precision, official: "false",
   source: `https://www.wikidata.org/wiki/${e.qid}`, note: "",

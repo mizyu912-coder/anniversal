@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import AnnivList from "./AnnivList";
 import { ENTITY_TYPES } from "@/lib/types";
-import { isMilestone, NTH_OPTIONS, sortByDate } from "@/lib/anniv";
+import { isMilestone, NTH_OPTIONS, sortByDate, sortByPop } from "@/lib/anniv";
 import type { Anniversary, EntityType, SearchItem } from "@/lib/types";
 
 /** 節目以外も含む全件を検索インデックスから計算する */
@@ -12,7 +12,7 @@ function allFromIndex(index: SearchItem[], year: number): Anniversary[] {
     for (const b of i.bases) {
       if (b.k === "birthday" || b.y === null || year - b.y < 1) continue;
       const n = year - b.y;
-      out.push({ entityId: i.id, name: i.name, type: i.t, kind: b.k, baseYear: b.y, month: b.m, day: b.d, n, milestone: isMilestone(n) });
+      out.push({ entityId: i.id, name: i.name, type: i.t, kind: b.k, baseYear: b.y, month: b.m, day: b.d, n, milestone: isMilestone(n), pop: i.p });
     }
   return sortByDate(out);
 }
@@ -23,6 +23,7 @@ export default function YearFilter({ items: milestoneItems, year }: { items: Ann
   const [milestoneOnly, setMilestoneOnly] = useState(true);
   const [month, setMonth] = useState(0);
   const [nth, setNth] = useState(0);
+  const [order, setOrder] = useState<"pop" | "date">("pop");
   const [allItems, setAllItems] = useState<Anniversary[] | null>(null);
   // トップページから ?n=30&type=anime のように来たときの初期値
   useEffect(() => {
@@ -40,14 +41,12 @@ export default function YearFilter({ items: milestoneItems, year }: { items: Ann
       .catch(() => setAllItems([]));
   }, [milestoneOnly, allItems, year]);
   const items = milestoneOnly ? milestoneItems : (allItems ?? milestoneItems);
-  const filtered = useMemo(
-    () =>
-      items.filter(
-        (a) =>
-          (!type || a.type === type) && (!milestoneOnly || a.milestone) && (!month || a.month === month) && (!nth || a.n === nth),
-      ),
-    [items, type, milestoneOnly, month, nth],
-  );
+  const filtered = useMemo(() => {
+    const list = items.filter(
+      (a) => (!type || a.type === type) && (!milestoneOnly || a.milestone) && (!month || a.month === month) && (!nth || a.n === nth),
+    );
+    return order === "pop" ? sortByPop(list) : sortByDate(list);
+  }, [items, type, milestoneOnly, month, nth, order]);
 
   const csv = () => {
     const rows = [["名称", "種別", "周年", "起算", "起算年", "月", "日"]];
@@ -90,6 +89,10 @@ export default function YearFilter({ items: milestoneItems, year }: { items: Ann
               {i + 1}月
             </option>
           ))}
+        </select>
+        <select value={order} onChange={(e) => setOrder(e.target.value as "pop" | "date")} aria-label="並び順">
+          <option value="pop">知名度順</option>
+          <option value="date">日付順</option>
         </select>
         <label>
           <input type="checkbox" checked={milestoneOnly} onChange={(e) => setMilestoneOnly(e.target.checked)} /> 節目（1・5の倍数周年）のみ

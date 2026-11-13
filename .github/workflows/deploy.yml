@@ -33,6 +33,8 @@ jobs:
           NEXT_PUBLIC_AMAZON_TAG: ${{ vars.AMAZON_TAG }}
           NEXT_PUBLIC_RAKUTEN_AFF_ID: ${{ vars.RAKUTEN_AFF_ID }}
           NEXT_PUBLIC_REPORT_FORM_URL: ${{ vars.REPORT_FORM_URL }}
+          NEXT_PUBLIC_GA_ID: ${{ vars.GA_ID }}
+          NEXT_PUBLIC_GSC_VERIFICATION: ${{ vars.GSC_VERIFICATION }}
       # 画面遷移の先読み用ファイル（約8,500個）はアップロードしない。
       # なくても通常のページ遷移になるだけで表示に影響はない
       - run: find out -type f -name '*.txt' ! -path 'out/robots.txt' -delete
