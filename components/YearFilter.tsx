@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
+import Spotlight from "./Spotlight";
+import AdSlot from "./AdSlot";
 import AnnivList, { dateLabel } from "./AnnivList";
 import { BASE_KINDS, ENTITY_TYPES } from "@/lib/types";
 import { isMilestone, NTH_OPTIONS, sortByDate, sortByPop } from "@/lib/anniv";
@@ -137,33 +138,19 @@ export default function YearFilter({ items: milestoneItems, year }: { items: Ann
         <AnnivList items={[]} />
       ) : (
         <>
-          <section className="spotlight" aria-labelledby="spotlight-title">
-            <header className="spotlight-head">
-              <span className="spotlight-en">SPOTLIGHT</span>
-              <h2 id="spotlight-title">
-                {year}年{month ? ` ${month}月` : ""}の注目の周年
-              </h2>
-            </header>
-            <ol className="spotlight-grid">
-              {top.map((a, i) => (
-                <li key={key(a)}>
-                  <Link href={`/e/${a.entityId}/`} className="spot-card">
-                    <span className="spot-rank">{String(i + 1).padStart(2, "0")}</span>
-                    <span className="spot-nth">
-                      <b>{a.n}</b>周年
-                    </span>
-                    <span className="spot-body">
-                      <span className="spot-name">{a.name}</span>
-                      <span className="spot-meta">
-                        <span className="spot-tag">{ENTITY_TYPES[a.type]}</span>
-                        {dateLabel(a)}・{BASE_KINDS[a.kind]}（{a.baseYear}年）
-                      </span>
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ol>
-          </section>
+          <Spotlight
+            title={`${year}年${month ? ` ${month}月` : ""}の注目の周年`}
+            items={top.map((a) => ({
+              key: key(a),
+              href: `/e/${a.entityId}/`,
+              big: String(a.n),
+              unit: "周年",
+              name: a.name,
+              tag: ENTITY_TYPES[a.type],
+              meta: `${dateLabel(a)}・${BASE_KINDS[a.kind]}（${a.baseYear}年）`,
+            }))}
+          />
+          <AdSlot />
           {groups.length > 0 && (
             <section className="anniv-bydate">
               <h2>日付順</h2>

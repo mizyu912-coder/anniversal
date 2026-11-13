@@ -259,3 +259,19 @@ table.facts th { color: var(--muted); font-weight: 500; white-space: nowrap; }
 /* スマホで横にはみ出さないように（左右マージン付きの width:100% の入力欄、長い名前） */
 main > .search-input { width: calc(100% - 2 * max(16px, calc((100% - 1008px) / 2))); }
 .anniv-list .name, .spot-name { overflow-wrap: anywhere; }
+.spot-nth b { white-space: nowrap; }
+.spot-nth b.long { font-size: 1.5rem; padding-bottom: 2px; }
+
+/* 広告枠（ADSENSE_CLIENT と ADSENSE_SLOT を設定したときだけ表示） */
+.ad-slot { margin: 28px 0; padding: 8px 0 4px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: center; min-height: 120px; }
+.ad-label { display: block; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 4px; }
+
+/* トップの節目別リンク・節目ページの現在地 */
+.milestone-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.milestone-chips a { display: inline-flex; align-items: baseline; gap: 2px; padding: 6px 14px; border: 1px solid var(--gold); border-radius: 999px; background: var(--card); color: var(--fg); font-family: var(--serif-ja); font-size: 0.9rem; }
+.milestone-chips a b { font-family: var(--serif-en); font-size: 1.25rem; color: var(--gold-dark); }
+.milestone-chips a:hover { background: #15100a; color: #f3e3b6; text-decoration: none; }
+.milestone-chips a:hover b { color: var(--gold-light); }
+.month-index a.current { background: #15100a; color: #f3e3b6; }
+.spotlight-head h2 { text-wrap: balance; }
+@media (max-width: 640px) { .spotlight-head h2 { font-size: 1.12rem; letter-spacing: 0.04em; } }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AdSlot from "@/components/AdSlot";
 import AnnivList from "@/components/AnnivList";
 import { getEntities } from "@/lib/data";
 import { anniversariesInYear } from "@/lib/anniv";
@@ -54,6 +55,7 @@ export default async function FeaturePage({ params }: Props) {
           <AnnivList items={list} showType={false} />
         </section>
       ))}
+      <AdSlot />
       <p>
         <Link href={`/year/${year}/`}>{year}年の周年をすべて見る →</Link>
       </p>
