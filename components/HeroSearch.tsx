@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ENTITY_TYPES } from "@/lib/types";
 
 import { NTH_OPTIONS } from "@/lib/anniv";
@@ -9,6 +9,7 @@ import { NTH_OPTIONS } from "@/lib/anniv";
 export default function HeroSearch({ years, defaultYear }: { years: number[]; defaultYear: number }) {
   const router = useRouter();
   const [q, setQ] = useState("");
+  const composedAt = useRef(0); // Safariでは変換確定のEnterが送信扱いになるため、確定直後の送信を無視する
   const [year, setYear] = useState(defaultYear);
   const [n, setN] = useState("");
   const [type, setType] = useState("");
@@ -19,6 +20,7 @@ export default function HeroSearch({ years, defaultYear }: { years: number[]; de
         className="hero-panel"
         onSubmit={(e) => {
           e.preventDefault();
+          if (Date.now() - composedAt.current < 80) return;
           if (q.trim()) router.push(`/search/?q=${encodeURIComponent(q.trim())}`);
         }}
       >
@@ -31,6 +33,11 @@ export default function HeroSearch({ years, defaultYear }: { years: number[]; de
             type="search"
             value={q}
             onChange={(e) => setQ(e.target.value)}
+            onCompositionEnd={() => (composedAt.current = Date.now())}
+            onKeyDown={(e) => {
+              // 日本語変換を確定するEnterで送信されないように
+              if (e.nativeEvent.isComposing || e.keyCode === 229) e.preventDefault();
+            }}
             placeholder="例：ガンダム、ポケモン、任天堂"
             aria-label="作品名・ブランド名・企業名"
           />
