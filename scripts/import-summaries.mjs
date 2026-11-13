@@ -25,24 +25,31 @@ function trim(text) {
 
 async function fetchBatch(titles, attempt = 1) {
   const params = new URLSearchParams({
-    action: "query", format: "json", formatversion: "2", redirects: "1",
+    action: "query", format: "json", formatversion: "2", redirects: "1", maxlag: "5",
     prop: "extracts|pageprops", exintro: "1", explaintext: "1", exlimit: "20", ppprop: "disambiguation",
     titles: titles.join("|"),
   });
-  const res = await fetch(`${API}?${params}`, { headers: { "User-Agent": UA } });
-  if (res.status === 429 || res.status >= 500) {
-    if (attempt >= 4) throw new Error(`Wikipedia API ${res.status}`);
-    await new Promise((r) => setTimeout(r, 5000 * attempt));
+  const res = await fetch(`${API}?${params}`, { headers: { "User-Agent": UA, "Api-User-Agent": UA } });
+  const json = res.ok ? await res.json() : null;
+  // 429（混雑）・5xx・maxlag は待って再試行。Retry-After があればそれに従う
+  if (!res.ok || json?.error?.code === "maxlag") {
+    if (attempt >= 6) return null;
+    const wait = Math.max(Number(res.headers.get("retry-after") || 0) * 1000, 10000 * attempt);
+    await new Promise((r) => setTimeout(r, wait));
     return fetchBatch(titles, attempt + 1);
   }
-  if (!res.ok) throw new Error(`Wikipedia API ${res.status}`);
-  return res.json();
+  return json;
 }
 
 const rows = [];
+let failed = 0;
 for (let i = 0; i < targets.length; i += 20) {
   const batch = targets.slice(i, i + 20);
   const json = await fetchBatch(batch.map((t) => t.title));
+  if (!json) {
+    failed += batch.length; // 取得できなかった分は飛ばして続ける（次回の取り込みで再取得）
+    continue;
+  }
   const q = json.query ?? {};
   // 入力した記事名 → 正規化・転送後の記事名
   const resolve = new Map();
@@ -58,7 +65,8 @@ for (let i = 0; i < targets.length; i += 20) {
     if (summary.length >= 20) rows.push({ id: t.id, title: p.title, summary });
   }
   if (i % 1000 === 0) console.log(`${i}/${targets.length}`);
-  await new Promise((r) => setTimeout(r, 300));
+  await new Promise((r) => setTimeout(r, 1500)); // Wikipediaの負荷にならないよう1件ずつゆっくり
 }
 fs.writeFileSync("data/import/summaries.csv", Papa.unparse(rows) + "\n");
-console.log(`概要: ${rows.length}/${targets.length}件`);
+console.log(`概要: ${rows.length}/${targets.length}件（取得失敗 ${failed}件）`);
+if (rows.length === 0) throw new Error("概要を1件も取得できませんでした");
