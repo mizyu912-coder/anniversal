@@ -29,10 +29,12 @@ const TARGETS = [
     where: "?item wdt:P414 wd:Q217475; wdt:P17 wd:Q17." },
   // 商品ブランド（国内）：設立・発売日
   { type: "brand", kind: "launch", genre: "", minLinks: 4, dateProps: ["P571", "P577"],
-    where: "?item wdt:P31 wd:Q431289. { ?item wdt:P17 wd:Q17 } UNION { ?item wdt:P495 wd:Q17 }" },
+    // 会社・放送局・レーベル等（組織）や一覧記事は除き、商品ブランドだけにする
+    where: "?item wdt:P31 wd:Q431289. { ?item wdt:P17 wd:Q17 } UNION { ?item wdt:P495 wd:Q17 } FILTER NOT EXISTS { ?item wdt:P31/wdt:P279* wd:Q43229 } FILTER NOT EXISTS { ?item wdt:P31 wd:Q13406463 }" },
   // キャラクター：国内作品に登場する架空の人物の誕生日（月日のみ使う）
   { type: "character", kind: "birthday", genre: "", minLinks: 5, dateProps: ["P569"], birthday: true,
-    where: "?item wdt:P31/wdt:P279* wd:Q95074; wdt:P1441 ?work. ?work wdt:P495 wd:Q17." },
+    // 日本以外だけで作られた作品（米国コミック・洋画など）に登場するキャラクターは除く
+    where: "?item wdt:P31/wdt:P279* wd:Q95074; wdt:P1441 ?work. ?work wdt:P495 wd:Q17. FILTER NOT EXISTS { ?item wdt:P1441 ?w2. ?w2 wdt:P495 ?c2. FILTER NOT EXISTS { ?w2 wdt:P495 wd:Q17 } }" },
 ];
 
 function query(t, prop) {
