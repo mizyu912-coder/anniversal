@@ -15,7 +15,7 @@ if (!$zip->extractTo($root)) { $zip->close(); $finish(500, 'NG extract failed');
 $zip->close();
 // サイトが生成するフォルダの中で、今回のzipに無い古いファイルを削除する
 $removed = 0;
-foreach (['e', 'year', 'feature', 'calendar', 'birthdays', 'search', 'about', '_next'] as $dir) {
+foreach (['e', 'year', 'feature', 'calendar', 'birthdays', 'search', 'about', 'matome', '_next'] as $dir) {
   $base = "$root/$dir";
   if (!is_dir($base)) continue;
   $it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($base, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST);
